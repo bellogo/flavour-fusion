@@ -1,0 +1,37 @@
+.about-main-container{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 2rem 0rem;
+    position: relative;
+}
+.about-main-container h1{
+    position: absolute;
+    color: white;
+    font-size: 3rem;
+    z-index: 100;
+    left: 34%;
+    top: 40%;
+    /* background-color: red; */
+}
+.about-image{
+    margin-top: 2rem;
+    width: 100%;
+    height: 30rem;
+}
+
+.about-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: polygon(0 0, 100% 0, 90% 80%, 10% 80%);
+}
+.about-us-content{
+    /* margin: 2rem 0rem; */
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+}

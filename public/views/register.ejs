@@ -1,0 +1,36 @@
+<%- include('layouts/header'); -%>
+<link rel="stylesheet" type="text/css" href="../css/home.css">
+</head>
+<body>
+  <%- include('layouts/nav'); -%>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+    <div class="content-container">
+        <div class="register-form-outer-container">
+
+            <form action="" class="user-form register-form-container">
+                <h2 class="content-title">SIGN UP</h2>
+                <div class="user-register-details">
+                    <input type="text" name="username" id="sername" placeholder="Username"><br>
+
+                    <input type="text" name="email" id="email" placeholder="Email"><br>
+                    
+                    <input type="password" name="password" id="password" placeholder="Password"><br>
+                    
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"><br>
+                    <a href=""><button class="btn" id="register-button" type="submit">register</button></a>
+                    
+                </div>
+                <div>
+                    <p>Already have an account ?</p>
+                    <a class="user-auth-link" href="login.html">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+   
+</body>
+<%- include('layouts/footer'); -%>

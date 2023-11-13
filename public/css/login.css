@@ -1,0 +1,43 @@
+
+.login-form-outer-container, .register-form-outer-container{
+    background: url('../images/background-image-main.jpg') no-repeat center/cover;
+    padding: 3rem 0rem;
+}
+.user-form{
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 30rem;
+    text-align: center;
+    border-radius: 25px;
+    padding: 3rem;
+}
+.user-form input{
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: 25px;
+    border: 1px solid black;
+    margin: .8rem 0rem;
+}
+
+.user-form 
+.user-login-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.user-auth-link {
+    color: rgb(97, 97, 215);
+}
+
+/* register form  */
+.register-form-container{
+    height: 32.4rem;
+}
