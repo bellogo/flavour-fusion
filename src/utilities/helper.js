@@ -97,12 +97,9 @@ exports.validateRequest = (object, res, schema, unknown = false) => {
     /**
          * returns a single error at a time
          */
-    return this.errorResponse(
-      res,
-      this.responseCode.UNPROCESSABLE_ENTITY,
-      'A validation error has occurred',
-      FormattedError,
-    );
+    return FormattedError;
+  }else {
+    return false;
   }
 }
 

@@ -8,19 +8,34 @@
 <body>
 
     <div class="content-container">
+        <% if (errors) { %>
+            <% errors.forEach((error) => { %>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+              <% }); %>
+            <% } %>
+            <% if (message) { %>
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                    <%= message %>
+                </div>
+              </div>
+              <% } %>
         <div class="register-form-outer-container">
-
-            <form action="" class="user-form register-form-container">
+            <form action="" class="user-form register-form-container" method="Post">
                 <h2 class="content-title">SIGN UP</h2>
                 <div class="user-register-details">
-                    <input type="text" name="username" id="sername" placeholder="Username"><br>
+                   
 
                     <input type="text" name="email" id="email" placeholder="Email"><br>
                     
                     <input type="password" name="password" id="password" placeholder="Password"><br>
                     
-                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"><br>
-                    <a href=""><button class="btn" id="register-button" type="submit">register</button></a>
+                    <!-- <a href=""><button class="btn" id="register-button" type="submit">register</button></a> -->
+                    <input class="btn" type="submit" value="register">
                     
                 </div>
                 <div>
@@ -31,6 +46,5 @@
         </div>
     </div>
     
-   
-</body>
+ 
 <%- include('layouts/footer'); -%>

@@ -60,9 +60,9 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-  res.render("register")
+  res.render("register", {errors: null, message: null})
 });
 
-router.post('/register', registerValidation, authController.signUp);
+router.post('/register', authController.signUp);
 
 module.exports = router;
