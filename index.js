@@ -4,6 +4,8 @@ const passport = require('passport');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require("path");
+const session = require("express-session");
+const { port } = require('./config');
 
 const corsOptions = {
   origin: '*',
@@ -15,11 +17,20 @@ const app = express();
 app.use(cors(corsOptions));
 
 // Configure views and static assets
-app.set("views", path.join(__dirname, "/public/views"));
-app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/public/templates"));
+app.use(express.static(__dirname + "/public/"));
 
-const port = process.env.PORT || 3000;
+
+
+app.use(
+  session({
+      secret: "randomsecret",
+      resave: false,
+      saveUninitialized: true,
+  })
+);
+// const port = process.env.PORT || 3000;
 const routes = require('./src/routes'); // Import your welcome route
 
 app.use(helmet());
@@ -37,8 +48,6 @@ const swaggerSpec = require('./src/config/swaggerConfig'); // Import the Swagger
 // Serve Swagger UI and Swagger JSON
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Passport Middleware
-app.use(passport.initialize());
 
 // Passport Configuration
 require('./src/config/passport')(passport);
@@ -54,6 +63,6 @@ const apiRoutes = require('./src/routes');
 app.use('', cors(corsOptions), routes);
 
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(port || 3000, () => {
+  console.log(`Server is running on port ${port||'3000'} http://localhost:${port||'3000'}`);
 });

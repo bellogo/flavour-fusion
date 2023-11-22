@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/recipe.css">
+    <link rel="stylesheet" href="../css/recipies.css">
+    <link rel="stylesheet" href="../css/add-recipe.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/about-us.css">
+</head>
+<body>
+    <div class="hero-main-container">
+        <header class="hero-inner-container">
+            <div class="logo-container">
+                
+                <a href="/index"><img src="../images/flavor-fusion-high-resolution-logo-black-transparent.png"alt=""></a>
+            </div>
+            <div class="navbar-outer-container">
+
+                <nav class="navbar-main-container" id="navbar">
+                    <ul class="nav-bar-inner-container">
+                        <li class="nav-item"><a href="/index">Home</a></li>
+                        <li class="nav-item"><a href="/recipies">Recipes</a></li>
+                        <li class="nav-item"><a href="/about-us">About US</a></li>
+                        <li class="nav-item"><a href="/contact">Contact</a></li>
+                        <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+                        
+                        
+                    </ul>
+                </nav>
+                <div class="user-check-container">
+                    <ul class="nav-bar-inner-container">
+                        
+                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <li class="nav-item"><a href="/register">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="burger-menu" onclick="toggleNavbar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <%- include('../layouts/error'); -%>
+    <!-- responsive navigation bar -->
+    <div class="navbar-responsive" id="navbarResponsive">
+        <ul class="nav-bar-inner-container">
+            <li class="nav-item"><a href="/index">Home</a></li>
+            <li class="nav-item"><a href="/recipies">Recipes</a></li>
+            <li class="nav-item"><a href="/about-us">About US</a></li>
+            <li class="nav-item"><a href="/contact">Contact</a></li>
+            <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+            <li class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/register">Sign Up</a></li>
+        </ul>
+        <div class="close-btn" onclick="toggleNavbar()">×</div>
+    </div>
+
+
+    <div class="content-container">
+        <div class="login-form-outer-container">
+
+            <form action="/login" class="user-form login-form-container" method="Post">
+                <h2 class="content-title">LOGIN</h2>
+            <div class="user-login-details">
+                <input type="text" name="email" id="email" placeholder="Email">
+                
+                <input type="password" name="password" id="password" placeholder="Password">
+                
+                <button class="btn" id="login-button" type="submit">login</button>
+            </div>
+            <div>
+                <a class="user-auth-link" href="/forgot-password">forgot password ?</a>
+            </div>
+            <div>
+                <p>Don't have account ?</p>
+                <a class="user-auth-link" href="/register">Sign Up</a>
+            </div>
+        </form>
+    </div>
+    </div>
+    
+    <footer class="footer-main-container">
+        <div>
+            <div class="footer-social-icons-container">
+                <h3>follow us on social media</h3>
+                
+                <div>
+
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-square-x-twitter"></i></a>
+                </div>
+                
+                
+            </div>
+            <div class="footer-other-details">
+                <h3>Contact Us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum cumque aperiam, fugiat molestias incidunt culpa non nemo? Ea, fuga dolore ex nemo neque amet rem omnis in enim perferendis!</p>
+            </div>
+        </div>
+        <p>Flavor Fusion , All Rights Reserved</p>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

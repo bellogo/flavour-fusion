@@ -152,7 +152,7 @@ module.exports = class BaseRepository {
      */
     updateModelWithQuery = async (query, data, returnUpdatedData = true)=>
     {
-        return await this.model.findByIdAndUpdate(query, data, { new: returnUpdatedData });
+        return await this.model.findOneAndUpdate(query, data, { new: returnUpdatedData });
     }
 
     /**

@@ -3,9 +3,6 @@
  */
 const config = require('../../config');
 const { jwtKey } = config;
-
-
-
 const jwt = require('jsonwebtoken');
 
 const bcrypt = require('bcryptjs');
@@ -109,8 +106,24 @@ exports.validateRequest = (object, res, schema, unknown = false) => {
  * @param password
  */
 exports.hashPassword = async (password) => {
-  console.log('pasword', password);
   const newPassword = password.replace(/ /g, '')
   const salt = await bcrypt.genSaltSync(saltRounds);
   return await bcrypt.hashSync(newPassword, salt);
+};
+
+exports.generateJWT = (payload) => {
+  return jwt.sign(payload, jwtKey, { expiresIn: '1d' });
+};
+
+exports.verifyJWT = (token) => jwt.verify(token, jwtKey);
+
+/**
+ * Compare passwords with Database
+ * @param inputPassword
+ * @param dbPassword
+ */
+exports.comparePasswords = (inputPassword, dbPassword) => {
+  if (!bcrypt.compareSync(inputPassword, dbPassword)) return false;
+
+  return true;
 };

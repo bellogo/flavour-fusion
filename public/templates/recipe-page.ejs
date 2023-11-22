@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/recipe.css">
+    <link rel="stylesheet" href="../css/recipies.css">
+    <link rel="stylesheet" href="../css/add-recipe.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/about-us.css">
+</head>
+<body>
+    <div class="hero-main-container">
+        <header class="hero-inner-container">
+            <div class="logo-container">
+                
+                <a href="/index"><img src="../images/flavor-fusion-high-resolution-logo-black-transparent.png"alt=""></a>
+            </div>
+            <div class="navbar-outer-container">
+
+                <nav class="navbar-main-container" id="navbar">
+                    <ul class="nav-bar-inner-container">
+                        <li class="nav-item"><a href="/index">Home</a></li>
+                        <li class="nav-item"><a href="/recipies">Recipes</a></li>
+                        <li class="nav-item"><a href="/about-us">About US</a></li>
+                        <li class="nav-item"><a href="/contact">Contact</a></li>
+                        <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+                        
+                        
+                    </ul>
+                </nav>
+                <div class="user-check-container">
+                    <ul class="nav-bar-inner-container">
+                        
+                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <li class="nav-item"><a href="/register">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="burger-menu" onclick="toggleNavbar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <%- include('../layouts/error'); -%>
+    <!-- responsive navigation bar -->
+    <div class="navbar-responsive" id="navbarResponsive">
+        <ul class="nav-bar-inner-container">
+            <li class="nav-item"><a href="/index">Home</a></li>
+            <li class="nav-item"><a href="/recipies">Recipes</a></li>
+            <li class="nav-item"><a href="/about-us">About US</a></li>
+            <li class="nav-item"><a href="/contact">Contact</a></li>
+            <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+            <li class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/register">Sign Up</a></li>
+        </ul>
+        <div class="close-btn" onclick="toggleNavbar()">×</div>
+    </div>
+
+
+    <div class="content-container">
+            <div class="recipe-page">
+                <section class="recipe-hero">
+                    <img
+                    src="../images/background-image-main.jpg"
+                    class="img recipe-hero-img"
+                    />
+                    <div class="recipe-info">
+                        <h2>Banana Pancakes</h2>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, numquam. Aliquam saepe enim, doloribus quis debitis adipisci, corrupti voluptatibus illum maiores fugit repellat nihil, ex molestiae accusamus? Tempore eaque voluptatem iusto inventore laboriosam sint? Odio, soluta. Corrupti explicabo amet laudantium natus iure illo accusamus animi. Illo suscipit assumenda qui odit, facilis quo rerum dolorum laborum molestias quidem sed quasi deleniti.
+                        </p>
+                        <div class="recipe-icons">
+                        
+                            <div>
+                                <button id="saveRecipe"><i class="fa-regular fa-bookmark recipe-page-save" onclick="saveRecipe(this)"></i></button>
+                                
+                                <h5>Add to Favourites</h5>
+                                
+                            </div>
+                            <div>
+                                <button id="shareRecipe" onclick="copyToClipboard()">
+                                    <i class="fa-solid fa-share-from-square"></i>
+                                </button>
+                                <h5>share</h5>
+                                <p id="copyStatus"> </p>
+                            </div>
+                            <div>
+                                <i class="fas fa-clock"></i>
+                                <h5>prep time</h5>
+                                <p>30 min.</p>
+                            </div>
+                            <div>
+                                <i class="far fa-clock"></i>
+                                <h5>cook time</h5>
+                                <p>15 min.</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-user-friends"></i>
+                                <h5>serving</h5>
+                                <p>6 servings</p>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </section>
+
+                <section class="recipe-content">
+                    <div class="instructions-container">
+                        <h4>Instructions</h4>
+
+                        <div class="single-instruction">
+                            <div class="steps">
+                                <p>step 1</p>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, amet.
+                            </p>
+                        </div>
+
+                        <div class="single-instruction">
+                            <div class="steps">
+                                <p>step 2</p>
+                            </div>
+                            <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. A temporibus perferendis nisi? Sit sint ipsum eveniet, alias facere doloribus fugit.
+                            </p>
+                        </div>
+
+                        <div class="single-instruction">
+                            <div class="steps">
+                                <p>step 3</p>
+                            </div>
+                                <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque optio laudantium quasi iste repellendus quae voluptatum incidunt qui, ex explicabo.
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="ingredients-container">
+                        <div>
+                            <h4>Ingredients</h4>
+                            <p class="single-ingredient">1 1/2 pancake mix</p>
+                            <p class="single-ingredient">banana </p>
+                            <p class="single-ingredient">1 cup milk</p>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+    </div>
+    
+    <footer class="footer-main-container">
+        <div>
+            <div class="footer-social-icons-container">
+                <h3>follow us on social media</h3>
+                
+                <div>
+
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-square-x-twitter"></i></a>
+                </div>
+                
+                
+            </div>
+            <div class="footer-other-details">
+                <h3>Contact Us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum cumque aperiam, fugiat molestias incidunt culpa non nemo? Ea, fuga dolore ex nemo neque amet rem omnis in enim perferendis!</p>
+            </div>
+        </div>
+        <p>Flavor Fusion , All Rights Reserved</p>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>
