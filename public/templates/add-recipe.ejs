@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/recipe.css">
+    <link rel="stylesheet" href="../css/recipies.css">
+    <link rel="stylesheet" href="../css/add-recipe.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/about-us.css">
+</head>
+<body>
+    <div class="hero-main-container">
+        <header class="hero-inner-container">
+            <div class="logo-container">
+                
+                <a href="/index"><img src="../images/flavor-fusion-high-resolution-logo-black-transparent.png"alt=""></a>
+            </div>
+            <div class="navbar-outer-container">
+
+                <nav class="navbar-main-container" id="navbar">
+                    <ul class="nav-bar-inner-container">
+                        <li class="nav-item"><a href="/index">Home</a></li>
+                        <li class="nav-item"><a href="/recipies">Recipes</a></li>
+                        <li class="nav-item"><a href="/about-us">About US</a></li>
+                        <li class="nav-item"><a href="/contact">Contact</a></li>
+                        <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+                        
+                        
+                    </ul>
+                </nav>
+                <div class="user-check-container">
+                    <ul class="nav-bar-inner-container">
+                        
+                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <li class="nav-item"><a href="/register">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="burger-menu" onclick="toggleNavbar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <%- include('../layouts/error'); -%>
+    <!-- responsive navigation bar -->
+    <div class="navbar-responsive" id="navbarResponsive">
+        <ul class="nav-bar-inner-container">
+            <li class="nav-item"><a href="/index">Home</a></li>
+            <li class="nav-item"><a href="/recipies">Recipes</a></li>
+            <li class="nav-item"><a href="/about-us">About US</a></li>
+            <li class="nav-item"><a href="/contact">Contact</a></li>
+            <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+            <li class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/register">Sign Up</a></li>
+        </ul>
+        <div class="close-btn" onclick="toggleNavbar()">×</div>
+    </div>
+
+
+    <div class="content-container">
+        <div class="add-recipe-main-container">
+            <h1>Add a New Recipe</h1>
+            <form id="recipeForm">
+                <div>
+
+                    <label for="recipeName">Recipe Name:</label>
+                    <input type="text" id="recipeName" name="recipeName" required>
+                </div>
+
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div>
+                    <label for="prepTime">Prep Time (minutes):</label>
+                    <input type="number" id="prepTime" name="prepTime" required>
+                </div>
+
+                <div>
+                    <label for="cookTime">Cook Time (minutes):</label>
+                    <input type="number" id="cookTime" name="cookTime" required>
+                </div>
+
+                <div>
+                    <label for="servings">Number of Servings:</label>
+                    <input type="number" id="servings" name="servings" required>
+                </div>
+
+                <div>
+                    <label>Ingredients:</label>
+                    <div id="ingredientsContainer" class="ingredients-main-container">
+            
+                        <div class="ingredients-inner-container">
+                            
+                        </div>
+                        <button type="button" onclick="addIngredient()">Add Ingredient</button>
+                    </div>
+                </div>
+
+                <div>
+
+                    <label>Instructions:</label>
+                    <div id="instructionsContainer" class="instructions-main-container">
+                        
+                        <div class="instructions-inner-container">
+                            
+                        </div>
+                        <button type="button" onclick="addInstruction()">Add Step</button>
+                        
+                    </div>
+                </div>
+
+                <button id="recipeSubmit" type="submit">Submit Recipe</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="footer-main-container">
+        <div>
+            <div class="footer-social-icons-container">
+                <h3>follow us on social media</h3>
+                
+                <div>
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    <a href=""><i class="fa-brands fa-square-x-twitter"></i></a>
+                </div>
+                    
+            </div>
+            <div class="footer-other-details">
+                <h3>Contact Us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum cumque aperiam, fugiat molestias incidunt culpa non nemo? Ea, fuga dolore ex nemo neque amet rem omnis in enim perferendis!</p>
+            </div>
+        </div>
+        <p>Flavor Fusion , All Rights Reserved</p>
+    </footer>
+
+    <script>
+
+        function addIngredient() {
+            var container = document.querySelector(".ingredients-inner-container");
+            var ingredientContainer = document.createElement("div")
+            var input = document.createElement("input");
+            ingredientContainer.classList.add("ingredient-container")
+            input.type = "text";
+            input.name = "ingredient";
+            var deleteButton = createDeleteButton(input);
+            ingredientContainer.appendChild(input);
+            ingredientContainer.appendChild(deleteButton);
+
+            container.appendChild(ingredientContainer)
+        }
+
+
+        function addInstruction() {
+            var container = document.querySelector(".instructions-inner-container");
+            var instructionContainer = document.createElement("div")
+            instructionContainer.classList.add("instruction-container")
+            var stepNumber = container.childElementCount + 1; 
+
+            var stepInput = createStepHeader(stepNumber);
+
+            var instructionInput = createInstructionInput(stepNumber);
+            var deleteButton = createDeleteButton(instructionInput);
+            instructionContainer.appendChild(stepInput);
+            instructionContainer.appendChild(instructionInput);
+            instructionContainer.appendChild(deleteButton);
+
+            container.appendChild(instructionContainer)
+        }
+
+
+        function createStepHeader(stepNumber) {
+            var stepHeader = document.createElement("h4");
+            stepHeader.textContent = "Step " + stepNumber;
+            return stepHeader;
+        }
+
+        
+        function createInstructionInput(stepNumber) {
+            var instructionInput = document.createElement("input");
+            instructionInput.type = "text";
+            instructionInput.name = "instruction";
+            instructionInput.placeholder = "Instruction for Step " + stepNumber;
+            instructionInput.required = true;
+            return instructionInput;
+        }
+        
+
+        function createDeleteButton(targetInput) {
+            var deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "delete-button";
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function () {
+                var parent = deleteButton.parentNode;
+                var containerElement = parent.parentElement
+                
+                containerElement.removeChild(parent); 
+
+                updateStepNumbers(containerElement);
+            };
+            return deleteButton;
+        }
+        function updateStepNumbers(container) {
+            var children = container.children;
+            // console.log(children)
+            for (var i = 0; i < children.length; i++) {
+                var stepHeader = children[i].querySelector("h4");
+                var parent = stepHeader.parentElement
+                var inputInstruction = parent.querySelector('input')
+                // console.log(stepHeader)
+                // console.log(parent)
+                if (stepHeader) {
+                    stepHeader.textContent = "Step " + (i + 1);
+                    inputInstruction.placeholder = "Instruction for Step " + (i + 1);
+                }
+            }
+        }
+    </script>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

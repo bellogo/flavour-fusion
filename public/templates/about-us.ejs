@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/recipe.css">
+    <link rel="stylesheet" href="../css/recipies.css">
+    <link rel="stylesheet" href="../css/add-recipe.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/about-us.css">
+</head>
+<body>
+    <div class="hero-main-container">
+        <header class="hero-inner-container">
+            <div class="logo-container">
+                
+                <a href="/index"><img src="../images/flavor-fusion-high-resolution-logo-black-transparent.png"alt=""></a>
+            </div>
+            <div class="navbar-outer-container">
+
+                <nav class="navbar-main-container" id="navbar">
+                    <ul class="nav-bar-inner-container">
+                        <li class="nav-item"><a href="/index">Home</a></li>
+                        <li class="nav-item"><a href="/recipies">Recipes</a></li>
+                        <li class="nav-item"><a href="/about-us">About US</a></li>
+                        <li class="nav-item"><a href="/contact">Contact</a></li>
+                        <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+                        
+                        
+                    </ul>
+                </nav>
+                <div class="user-check-container">
+                    <ul class="nav-bar-inner-container">
+                        
+                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <li class="nav-item"><a href="/register">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="burger-menu" onclick="toggleNavbar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <%- include('../layouts/error'); -%>
+    <!-- responsive navigation bar -->
+    <div class="navbar-responsive" id="navbarResponsive">
+        <ul class="nav-bar-inner-container">
+            <li class="nav-item"><a href="/index">Home</a></li>
+            <li class="nav-item"><a href="/recipies">Recipes</a></li>
+            <li class="nav-item"><a href="/about-us">About US</a></li>
+            <li class="nav-item"><a href="/contact">Contact</a></li>
+            <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+            <li class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/register">Sign Up</a></li>
+        </ul>
+        <div class="close-btn" onclick="toggleNavbar()">×</div>
+    </div>
+   
+    
+    
+    <div class="content-container">
+        <div class="about-main-container">
+
+            
+            
+            
+            <div class="about-image">
+                <img src="../images/background-image-main.jpg" alt="">
+                <h1>About Flavor Fusion</h1>
+            </div>
+            <div class="about-us-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo iusto iste officia voluptatibus dicta placeat cum ipsam molestiae culpa repellendus quisquam quidem quos laudantium molestias, perspiciatis rerum ad at repudiandae, debitis officiis numquam a consequuntur eaque? Perspiciatis earum neque ex?</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <footer class="footer-main-container">
+        <div>
+            <div class="footer-social-icons-container">
+                <h3>follow us on social media</h3>
+                
+                <div>
+
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-square-x-twitter"></i></a>
+                </div>
+                
+                
+            </div>
+            <div class="footer-other-details">
+                <h3>Contact Us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum cumque aperiam, fugiat molestias incidunt culpa non nemo? Ea, fuga dolore ex nemo neque amet rem omnis in enim perferendis!</p>
+            </div>
+        </div>
+        <p>Flavor Fusion , All Rights Reserved</p>
+    </footer>
+    <script src="/js/script.js"></script>
+</body>
+</html>

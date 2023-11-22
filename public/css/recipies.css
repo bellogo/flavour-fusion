@@ -1,0 +1,190 @@
+.recipies-main-container{
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.filter-list-container {
+    border: 1px solid rgba(0, 0, 0, .3);
+    width: 24%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
+    height: max-content;
+    padding: 1rem;
+    overflow-y: auto;
+}
+.filter-list-container h4 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.filter-option {
+
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 10px 6px;
+    margin-bottom: 1rem;
+}
+.filter-option .option-main{
+    display: flex;
+    justify-content: space-around;
+}
+.dropdown {
+    display: none;
+    margin-top: .4rem;
+}
+
+.filter-input {
+    padding: 5px;
+}
+
+.dropdown-btn {
+    padding: 2px 6px;
+    cursor: pointer;
+    color: black;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown-content {
+    display: none;
+    /* display: flex; */
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+.dropdown-content div{
+    display: flex;
+}
+
+
+.dropdown-content label {
+    display: block;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown-content input {
+    margin-right: 5px;
+}
+
+/* --show the dropdown content when the button is clicked --*/
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+#filterButton{
+    padding: 6px 8px;
+    background-color: black;
+    color: white;
+    margin-left: auto;
+    display: block;
+    margin-right: auto;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+
+.input-search{
+    border: 1px solid rgba(0, 0, 0, .3);
+    /* border-radius: 10px; */
+    font-size: 1.2rem;
+    width: 80%;
+    padding: 10px 15px;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: red; */
+}
+.recipe-search-container{
+    width: 80%;
+    /* background-color: red; */
+    margin-left: auto;
+    margin-right: auto;
+}
+#recipeSearchBtn{
+    padding:  10px 15px;
+    font-size: 1.2rem;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.total-recipies-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    text-align: center;
+}
+
+.view-more-btn-container{
+    display: inline-block;
+    width: 100%;
+    margin-top: 2rem;
+}
+.view-more-btn{
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recipe-filter-toogle-container{
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .recipies-main-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 97%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        position: relative;
+    }
+    .total-recipies-container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .recipe-search-container{
+        position: absolute;
+        z-index: 1;
+        top:20px;
+        right: 30px;
+    }
+    .recipe-filter-toogle-container{
+        display: block;
+        margin-bottom: 2rem;
+        margin-top: 1.4rem;
+        text-align: center;
+    }
+    .filter-list-container {
+        margin-top: 4rem;
+        align-self: center;
+        width: 20rem;
+        display: none;
+    }
+    .filter-list-container.show{
+        display: block;
+    }
+    
+}
+@media screen and (max-width: 760px) {
+    .input-search{
+        width: 70%;
+    }
+    .recipe-search-container{
+        width: 90%;
+        left: 15px;
+    }
+    .total-recipies-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

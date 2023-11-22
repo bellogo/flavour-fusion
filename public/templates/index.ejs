@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com">
+
+    <title>Flavor Fusion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/recipe.css">
+    <link rel="stylesheet" href="../css/recipies.css">
+    <link rel="stylesheet" href="../css/add-recipe.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/about-us.css">
+</head>
+<body>
+    
+    <div class="hero-main-container">
+        <header class="hero-inner-container">
+            <div class="logo-container">
+                
+                <a href="/index"><img src="../images/flavor-fusion-high-resolution-logo-black-transparent.png"alt=""></a>
+            </div>
+            <div class="navbar-outer-container">
+
+                <nav class="navbar-main-container" id="navbar">
+                    <ul class="nav-bar-inner-container">
+                        <li class="nav-item"><a href="/index">Home</a></li>
+                        <li class="nav-item"><a href="/recipies">Recipes</a></li>
+                        <li class="nav-item"><a href="/about-us">About US</a></li>
+                        <li class="nav-item"><a href="/contact">Contact</a></li>
+                        <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+                        
+                        
+                    </ul>
+                </nav>
+                <div class="user-check-container">
+                    <ul class="nav-bar-inner-container">
+                        
+                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <li class="nav-item"><a href="/register">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="burger-menu" onclick="toggleNavbar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <%- include('../layouts/error'); -%>
+    <!-- responsive navigation bar -->
+    <div class="navbar-responsive" id="navbarResponsive">
+        <ul class="nav-bar-inner-container">
+            <li class="nav-item"><a href="/index">Home</a></li>
+            <li class="nav-item"><a href="/recipies">Recipes</a></li>
+            <li class="nav-item"><a href="/about-us">About US</a></li>
+            <li class="nav-item"><a href="/contact">Contact</a></li>
+            <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+            <li class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/register">Sign Up</a></li>
+        </ul>
+        <div class="close-btn" onclick="toggleNavbar()">×</div>
+    </div>
+
+    <div class="content-container">
+       <div class="index-search-bar-container">
+
+           <form action="" class="indexSearchForm">
+
+               <label for="indexSearch"></label>
+               <input type="text" name="indexSearch" id="indexSearch" placeholder="search for recipes">
+               <button type="submit">search</button>
+            </form>
+        </div>
+
+        <div class="top-recipies-container">
+            <h2>Top Recipes</h2>
+            <div class="top-recipies-inner-container">
+                
+                <div class="recipe-container">
+                    <div class="recipe-image-container">
+
+                        <img src="../images/background-image-main.jpg" alt="">
+                        <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                    </div>
+                    
+                    <h4 class="recipe-title">Recipe Name</h4>
+                    <a class="btn btn-recipe" href="/recipe-page">view</a>
+                    
+                </div>
+                <div class="recipe-container">
+                    <div class="recipe-image-container">
+
+                        <img src="../images/background-image-main.jpg" alt="">
+                        <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                    </div>
+                    
+                    <h4 class="recipe-title">Recipe Name</h4>
+                    <a class="btn btn-recipe" href="/recipe-page">view</a>
+                    
+                </div>
+                <div class="recipe-container">
+                    <div class="recipe-image-container">
+
+                        <img src="../images/background-image-main.jpg" alt="">
+                        <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                    </div>
+                    
+                    <h4 class="recipe-title">Recipe Name</h4>
+                    <a class="btn btn-recipe" href="/recipe-page">view</a>
+                    
+                </div>
+                <div class="recipe-container">
+                    <div class="recipe-image-container">
+
+                        <img src="../images/background-image-main.jpg" alt="">
+                        <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                    </div>
+                    
+                    <h4 class="recipe-title">Recipe Name</h4>
+                    <a class="btn btn-recipe" href="/recipe-page">view</a>
+                    
+                </div>
+                <div class="recipe-container">
+                    <div class="recipe-image-container">
+
+                        <img src="../images/background-image-main.jpg" alt="">
+                        <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                    </div>
+                    
+                    <h4 class="recipe-title">Recipe Name</h4>
+                    <a class="btn btn-recipe" href="/recipe-page">view</a>
+                    
+                </div>
+                
+                
+                
+            </div>
+        </div>
+        <div class="index-about-us-container">
+            <h2>About us</h2>
+            <div class="index-abouts-us-inner-container">
+                <div class="index-about-us-details">
+                    <h3>how we started</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni excepturi iste ab, aspernatur alias, et hic omnis non maiores fugiat corporis quod, ad velit distinctio possimus tempore esse! Laudantium, error!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, culpa itaque nostrum iusto quidem delectus sint dolor neque dolorem illum quia ab molestiae, accusantium nesciunt vel harum earum laboriosam optio.</p>
+                    <a href="/about-us"><button class="btn">Continue..</button></a>
+                </div>
+                <div class="index-about-us-image">
+                    <img src="../images/background-image-main.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer-main-container">
+        <div>
+            <div class="footer-social-icons-container">
+                <h3>follow us on social media</h3>
+                
+                <div>
+
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-square-x-twitter"></i></a>
+                </div>
+                
+                
+            </div>
+            <div class="footer-other-details">
+                <h3>Contact Us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum cumque aperiam, fugiat molestias incidunt culpa non nemo? Ea, fuga dolore ex nemo neque amet rem omnis in enim perferendis!</p>
+            </div>
+        </div>
+        <p>Flavor Fusion , All Rights Reserved</p>
+    </footer>
+    <script>
+    
+    </script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

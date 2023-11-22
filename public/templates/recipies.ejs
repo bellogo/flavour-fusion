@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/recipe.css">
+    <link rel="stylesheet" href="../css/recipies.css">
+    <link rel="stylesheet" href="../css/add-recipe.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/about-us.css">
+</head>
+<body>
+    <div class="hero-main-container">
+        <header class="hero-inner-container">
+            <div class="logo-container">
+                
+                <a href="/index"><img src="../images/flavor-fusion-high-resolution-logo-black-transparent.png"alt=""></a>
+            </div>
+            <div class="navbar-outer-container">
+
+                <nav class="navbar-main-container" id="navbar">
+                    <ul class="nav-bar-inner-container">
+                        <li class="nav-item"><a href="/index">Home</a></li>
+                        <li class="nav-item"><a href="/recipies">Recipes</a></li>
+                        <li class="nav-item"><a href="/about-us">About US</a></li>
+                        <li class="nav-item"><a href="/contact">Contact</a></li>
+                        <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+                        
+                        
+                    </ul>
+                </nav>
+                <div class="user-check-container">
+                    <ul class="nav-bar-inner-container">
+                        <% if (message === 'logged-in') { %>
+                            <li class="nav-item"><a href="/login">Login</a></li>
+                        <li class="nav-item"><a href="/register">Sign Up</a></li>
+                        <% } else { %>
+                            <li class="nav-item"><a href="/logout">Logout</a></li>
+                            <%}%>
+                        
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="burger-menu" onclick="toggleNavbar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <%- include('../layouts/error'); -%>
+    <!-- responsive navigation bar -->
+    <div class="navbar-responsive" id="navbarResponsive">
+        <ul class="nav-bar-inner-container">
+            <li class="nav-item"><a href="/index">Home</a></li>
+            <li class="nav-item"><a href="/recipies">Recipes</a></li>
+            <li class="nav-item"><a href="/about-us">About US</a></li>
+            <li class="nav-item"><a href="/contact">Contact</a></li>
+            <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+            <li class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/register">Sign Up</a></li>
+        </ul>
+        <div class="close-btn" onclick="toggleNavbar()">×</div>
+    </div>
+
+
+    <div class="content-container">
+        <div class="recipies-main-container">
+            
+            <div id="filterContainer" class="filter-list-container">
+                <h4>Filter By</h4>
+                <form action="" class="filter-list-form" id="filterForm">
+                    <div class="filter-option">
+                        <div class="option-main">
+                            <label for="mealType">Meal Type: </label>
+
+                            <button class="dropdown-btn" type="button"><i class="fa-solid fa-caret-down"></i></button>
+                        </div>
+                        <div class="dropdown" id="mealTypeDropdown">
+                            
+                            
+                            <div class="dropdown-content">
+                                <!-- <div>
+
+                                    <input type="text" id="mealType" class="filter-input" placeholder="Search...">
+                                </div> -->
+                                <div>
+
+                                    <input type="checkbox" id="breakfast" name="breakfast">
+                                    <label for="breakfast">Breakfast</label>
+                                </div>
+                                <div>
+
+                                    <input type="checkbox" id="lunch" name="lunch">
+                                    <label for="lunch">Lunch</label>
+                                </div>
+                                <div>
+
+                                    <input type="checkbox" id="dinner" name="dinner">
+                                    <label for="dinner">Dinner</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="filter-option">
+                        <div class="option-main">
+
+                            <label for="ingredients">Ingredients: </label>
+                            <button class="dropdown-btn" type="button"><i class="fa-solid fa-caret-down"></i></button>
+                        </div>
+                        <div class="dropdown" id="ingredientsDropdown">
+                            
+                            <div class="dropdown-content">
+                                <!-- <div>
+
+                                    <input type="text" id="ingredients" class="filter-input" placeholder="Search...">
+                                </div> -->
+                                <div>
+
+                                    <input type="checkbox" id="ingredient1" name="ingredient1">
+                                    <label for="ingredient1">Ingredient 1</label>
+                                </div>
+                                <div>
+
+                                    <input type="checkbox" id="ingredient2" name="ingredient2">
+                                    <label for="ingredient2">Ingredient 2</label>
+                                </div>
+                                <div>
+
+                                    <input type="checkbox" id="ingredient3" name="ingredient3">
+                                    <label for="ingredient3">Ingredient 3</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="filter-option">
+                        <div class="option-main">
+
+                            <label for="cookingTime">Cooking Time: </label>
+                            <button class="dropdown-btn" type="button"><i class="fa-solid fa-caret-down"></i></button>
+                        </div>
+                        <div class="dropdown" id="cookingTimeDropdown">
+                            
+                            
+                            <div class="dropdown-content">
+                                <!-- <div>
+
+                                    <input type="text" id="ingredients" class="filter-input" placeholder="Search...">
+                                </div> -->
+                                <div>
+
+                                    <input type="checkbox" id="time30" name="time30">
+                                    <label for="time30">30 Minutes</label>
+                                </div>
+                                <div>
+
+                                    <input type="checkbox" id="time60" name="time60">
+                                    <label for="time60">1 Hour</label>
+                                </div>
+                                <div>
+
+                                    <input type="checkbox" id="time90" name="time90">
+                                    <label for="time90">1.5 Hours</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <button type="button" class="btn filter-btn" id="filterButton">Filter</button>
+                </form>
+            </div>
+            <div class="recipies-inner-container">
+                <div class="recipe-search-container">
+                    <input type="text" class="input-search">
+                    <button type="submit" class="recipeSearch" id="recipeSearchBtn">search</button>
+                </div>
+                <div class="recipe-filter-toogle-container" >
+                    <button type="button" id="toggleFilter" class="btn filter-btn" onclick="toggleFilter()">Filter</button>
+                </div>
+                <div class="total-recipies-container" >
+
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                </div>
+                <div class="view-more-btn-container">
+                    <button class="btn view-more-btn">View More</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <footer class="footer-main-container">
+        <div>
+            <div class="footer-social-icons-container">
+                <h3>follow us on social media</h3>
+                
+                <div>
+
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    
+                    <a href=""><i class="fa-brands fa-square-x-twitter"></i></a>
+                </div>
+                
+                
+            </div>
+            <div class="footer-other-details">
+                <h3>Contact Us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum cumque aperiam, fugiat molestias incidunt culpa non nemo? Ea, fuga dolore ex nemo neque amet rem omnis in enim perferendis!</p>
+            </div>
+        </div>
+        <p>Flavor Fusion , All Rights Reserved</p>
+    </footer>
+    <script src="../js/script.js"></script>
+    </body>
+</html>
