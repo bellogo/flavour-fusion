@@ -18,6 +18,7 @@
   "homepage": "https://github.com/bellogo/flavour-fusion#readme",
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

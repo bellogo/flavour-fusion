@@ -30,13 +30,25 @@ module.exports = class BaseRepository {
      */
     getModelByCondition = async (filterObj = {}) => await this.model.findOne(filterObj).exec();
 
+/**
+     *
+     * @param page
+     * @param limit
+     * @param filterObj
+     */
+getCollection = async (filterObj = {})=> {
+    return {
+        records: await this.model.find(filterObj)
+    };
+}
+
     /**
      *
      * @param page
      * @param limit
      * @param filterObj
      */
-    getCollection = async (limit = 10, page = 1, filterObj = {})=> {
+    getCollectionwWithPagination = async (limit = 10, page = 1, filterObj = {})=> {
         return {
             records: await this.model.find(filterObj)
                 .skip((page - 1) * limit)

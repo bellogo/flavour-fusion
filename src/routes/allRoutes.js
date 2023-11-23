@@ -1,45 +1,13 @@
 const express = require('express');
 
 const router = express.Router();
-
-const Validations = require('../middlewares/validationMiddleware');
-const allValidations = new Validations();
-const {
-  registerValidation,
-} = allValidations;
-
 const AuthController = require('../controllers/AuthController');
+const RecipeController = require('../controllers/RecipeController');
+const FavoriteController = require('../controllers/FavoriteController');
 
 const authController = new AuthController();
-
-/**
- * @swagger
- * /api/v2/user/signup:
- *   post:
- *     summary: Register a new user
- *     tags:
- *       - Authentication
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *             example:
- *               email: user@example.com
- *               password: yourpassword
- *     responses:
- *       200:
- *         description: Successful registration
- *       400:
- *         description: Validation error or email already exists
- */
-
+const recipeController = new RecipeController();
+const favoriteController = new FavoriteController();
 
 router.get('/signup', authController.renserSignUp);
 
@@ -59,15 +27,9 @@ router.get('/recipe-page', (req, res) => {
   res.render("recipe-page", {errors: null, message: null})
 });
 
-router.get('/recipies', (req, res) => {
-  if (req.session.userLoggedIn) {
-    res.render("recipies", {errors: null, message: null})
+router.get('/recipies', recipeController.fetchRecipes);
 
-  }else {
-    res.render("login", {errors: ['Please login to continue'], message: null})
-  }
-});
-
+router.get('/get-recipies', recipeController.getAllRecipes);
 router.get('/forgot-password', (req, res) => {
   res.render("forgot-password", {errors: null, message: null})
 });
@@ -80,9 +42,7 @@ router.get('/user', (req, res) => {
   res.render("user", {errors: null, message: null})
 });
 
-router.get('/add-recipe', (req, res) => {
-  res.render("add-recipe", {errors: null, message: null})
-});
+
 router.get('/forgot-password', (req, res) => {
   res.render("forgot-password", {errors: null, message: null})
 });
@@ -105,16 +65,46 @@ router.get('/logout', (req, res) => {
     res.redirect("/");
 });
 
-// router.get('/resend-verification/:email', (req, res) => {
-//   res.render("register", {errors: null, message: null})
-// });
-
 router.get('/verify/:token', authController.verifyUser);
+
+router.get('/get-current-user', authController.getCurrentUser);
 
 router.post('/register', authController.signUp);
 
 router.post('/login', authController.logIn);
 
+router.get("/logout", (req, res) => {
+  req.session.email = "";
+  req.session.userLoggedIn = false;
+  res.render("login", {errors: null, message: 'User logged out'})
+});
 
+//ADD RECIPE
+router.get('/add-recipe', (req, res) => {
+  res.render("add-recipe", {errors: null, message: null})
+});
+
+router.post('/add-recipe', recipeController.addRecipe);
+
+router.post('/add-favorite', favoriteController.addFavorite);
+
+router.get('/get-favorites/:user', favoriteController.getFavorites);
+
+
+router.get('/get-host', (req, res) => {
+  if (process.env.HOST) {
+    return res.status(200).json({
+      status: 'success',
+      message: 'host retrieved',
+      data: process.env.HOST,
+    });
+  }else {
+    return res.status(400).json({
+      status: 'error',
+      message: 'no added host in env',
+    });
+  }
+  
+});
 
 module.exports = router;

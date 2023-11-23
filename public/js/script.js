@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const heroContainer = document.querySelector(".hero-inner-container");
     const logoContainer = document.querySelector(".logo-container");
@@ -219,6 +220,8 @@ function displayResults(recipes,initial, numToDisplay) {
             saveRecipe(this);
         });
     });
+
+    
 }
 
 document.addEventListener("DOMContentLoaded", function () {

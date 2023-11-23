@@ -7,14 +7,14 @@ const path = require("path");
 const session = require("express-session");
 const { port } = require('./config');
 
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-};
+// const corsOptions = {
+//   origin: '*',
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+// };
 
 const app = express();
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Configure views and static assets
 app.set("view engine", "ejs");
@@ -22,6 +22,13 @@ app.set("views", path.join(__dirname, "/public/templates"));
 app.use(express.static(__dirname + "/public/"));
 
 
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+    // Add other necessary directives here according to your needs
+  },
+}));
 
 app.use(
   session({
@@ -33,7 +40,7 @@ app.use(
 // const port = process.env.PORT || 3000;
 const routes = require('./src/routes'); // Import your welcome route
 
-app.use(helmet());
+// app.use(helmet());
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://bellogo:1234@netflix-skinny-double.mozzv.mongodb.net/flavour-fusion?retryWrites=true&w=majority', {
@@ -60,7 +67,7 @@ app.use(express.urlencoded({ extended: false }));
 const apiRoutes = require('./src/routes');
 
 // Routes
-app.use('', cors(corsOptions), routes);
+app.use('', routes);
 
 
 app.listen(port || 3000, () => {

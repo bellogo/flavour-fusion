@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net ; connect-src https://api.edamam.com/">
+=======
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;">
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' https://www.shutterstock.com https://www.adobe.com">
+>>>>>>> 6bef3a255175c26bd6d4fab2b01c102cccb7504f
 
     <title>Recipies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -191,8 +196,102 @@
                 </div>
                 <div class="total-recipies-container empty-recipes" id="recipeContainer" >
 
+<<<<<<< HEAD
                     <div class="">
                         Search For recipies
+=======
+                    <%if(recipes){%>
+                        <%recipes.forEach(recipe => {%>
+                            <div class="recipe-container">
+                                <div class="recipe-image-container">
+            
+                                    <img src="<%= recipe.image %>" alt="jk">
+                                    <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                                </div>
+                                
+                                <h4 class="recipe-title"><%= recipe.name %></h4>
+                                <a class="btn btn-recipe" href="/recipe-page">view</a>
+                                
+                            </div>
+                            <%  });%>
+                        <%}%>
+                        <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+                    </div>
+                    <div class="recipe-container">
+                        <div class="recipe-image-container">
+    
+                            <img src="../images/background-image-main.jpg" alt="">
+                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                        </div>
+                        
+                        <h4 class="recipe-title">Recipe Name</h4>
+                        <a class="btn btn-recipe" href="/recipe-page">view</a>
+                        
+>>>>>>> 6bef3a255175c26bd6d4fab2b01c102cccb7504f
                     </div>
                 </div>
                 <div class="view-more-btn-container">
