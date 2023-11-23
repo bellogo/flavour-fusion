@@ -234,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function searchRecipes() {
+
     const appId = 'fbf980cd'; 
     const appKey = '17f290186199c2129b0e48087b583767';
     const recipeInput = document.getElementById('recipeInput').value;
