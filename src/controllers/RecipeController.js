@@ -10,31 +10,37 @@ const {
   validateRequest,
   verifyJWT,
 } = require("../utilities/helper");
-const UserRepository = require("../repositories/UserRepo");
+const RecipeRepository = require("../repositories/RecipeRepo");
 const { nodeEnv } = require('../../config');
 const SendGrid = require("../services/sendgrid");
 
 
-module.exports = class AuthController extends MainController {
+module.exports = class RecipeController extends MainController {
   constructor() {
     super();
-    this.mainRepo = new UserRepository();
+    this.mainRepo = new RecipeRepository();
   }
 
   /**
    *
-   * user signup controller
+   * add recipe controller
    * @static
    * @param {*} req
    * @param {*} res
    * @return {*}
    */
-  signUp = async (req, res) => {
+  addRecipe = async (req, res) => {
     try {
       const schema = Joi.object({
         name: Joi.string().required(),
-        email: Joi.string().min(6).required().email(),
-        password: Joi.string().min(6).required(),
+        description: Joi.string().required(),
+        image: Joi.string().required(),
+        ingredients: Joi.array().items(Joi.string()).required(),
+        instructions: Joi.array().items(Joi.string()).required(),
+        source: Joi.string(),
+        source_url: Joi.string(),
+        calories: Joi.string(),
+        video: Joi.string(),
       });
 
       const errors = await validateRequest(req.body, res, schema);
@@ -46,19 +52,11 @@ module.exports = class AuthController extends MainController {
         });
       }
 
-      const { email, password, name } = req.body;
+      const recipe = await this.mainRepo.create(req.body);
 
-      const hashed = await hashPassword(password);
-      const user = await this.mainRepo.create({
-        email,
-        password: hashed,
-        name
-      });
-
-      if(user) {
-       await SendGrid.sendVerificationEmail(user.email, name)
-      } 
-      res.render("register", {errors: null, message: "Registeration successful, we've sent you a verification mail."})
+      const allRecipes = await this.mainRepo.getCollection();
+      console.log(allRecipes);
+      res.render("recipes", {errors: null, message: "Recipe added successful"})
     
     } catch (err) {
       console.log('error', err);

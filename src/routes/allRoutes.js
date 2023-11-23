@@ -1,45 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-
-const Validations = require('../middlewares/validationMiddleware');
-const allValidations = new Validations();
-const {
-  registerValidation,
-} = allValidations;
-
 const AuthController = require('../controllers/AuthController');
+const RecipeController = require('../controllers/RecipeController');
 
 const authController = new AuthController();
-
-/**
- * @swagger
- * /api/v2/user/signup:
- *   post:
- *     summary: Register a new user
- *     tags:
- *       - Authentication
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *             example:
- *               email: user@example.com
- *               password: yourpassword
- *     responses:
- *       200:
- *         description: Successful registration
- *       400:
- *         description: Validation error or email already exists
- */
-
+const recipeController = new RecipeController();
 
 router.get('/signup', authController.renserSignUp);
 
@@ -80,9 +46,7 @@ router.get('/user', (req, res) => {
   res.render("user", {errors: null, message: null})
 });
 
-router.get('/add-recipe', (req, res) => {
-  res.render("add-recipe", {errors: null, message: null})
-});
+
 router.get('/forgot-password', (req, res) => {
   res.render("forgot-password", {errors: null, message: null})
 });
@@ -105,15 +69,19 @@ router.get('/logout', (req, res) => {
     res.redirect("/");
 });
 
-// router.get('/resend-verification/:email', (req, res) => {
-//   res.render("register", {errors: null, message: null})
-// });
-
 router.get('/verify/:token', authController.verifyUser);
 
 router.post('/register', authController.signUp);
 
 router.post('/login', authController.logIn);
+
+//ADD RECIPE
+router.get('/add-recipe', (req, res) => {
+  res.render("add-recipe", {errors: null, message: null})
+});
+
+router.post('/add-recipe', recipeController.addRecipe);
+
 
 
 

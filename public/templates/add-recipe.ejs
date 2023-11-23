@@ -65,11 +65,12 @@
     <div class="content-container">
         <div class="add-recipe-main-container">
             <h1>Add a New Recipe</h1>
-            <form id="recipeForm">
+            <button id="trial" >perform magic</button>
+            <form id="recipeForm" action="" method="Post">
                 <div>
 
-                    <label for="recipeName">Recipe Name:</label>
-                    <input type="text" id="recipeName" name="recipeName" required>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
 
                 <div>
@@ -78,19 +79,40 @@
                 </div>
 
                 <div>
-                    <label for="prepTime">Prep Time (minutes):</label>
-                    <input type="number" id="prepTime" name="prepTime" required>
+
+                    <label for="image">Image:</label>
+                    <input type="text" id="image" name="image" required>
+                </div>
+
+
+                <div>
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea id="ingredients" name="ingredients" rows="4" required placeholder="Enter Ingredients (comma-separated)"></textarea>
                 </div>
 
                 <div>
-                    <label for="cookTime">Cook Time (minutes):</label>
-                    <input type="number" id="cookTime" name="cookTime" required>
+                    <label for="instructions">instructions:</label>
+                    <textarea id="instructions" name="instructions" rows="4" required placeholder="Enter instructions (comma-separated)"></textarea>
                 </div>
 
                 <div>
-                    <label for="servings">Number of Servings:</label>
-                    <input type="number" id="servings" name="servings" required>
+                    <label for="source">Source:</label>
+                    <input type="text" id="source" name="source" required>
                 </div>
+
+                <div>
+                    <label for="source_url">Source Link:</label>
+                    <input type="text" id="source_url" name="source_url" required>
+                </div>
+                <div>
+                    <label for="calories">Calories:</label>
+                    <input type="number" id="calories" name="calories" required>
+                </div>
+                <div>
+                    <label for="video">Video link:</label>
+                    <input type="text" id="video" name="video" required>
+                </div>
+                
 
                 <div>
                     <label>Ingredients:</label>
@@ -115,7 +137,8 @@
                         
                     </div>
                 </div>
-
+                
+                
                 <button id="recipeSubmit" type="submit">Submit Recipe</button>
             </form>
         </div>
@@ -225,7 +248,7 @@
             }
         }
     </script>
-
+<script src="../../node_modules/axios/dist/axios.min.js"></script>
     <script src="../js/script.js"></script>
 </body>
 </html>
