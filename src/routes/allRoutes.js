@@ -3,9 +3,11 @@ const express = require('express');
 const router = express.Router();
 const AuthController = require('../controllers/AuthController');
 const RecipeController = require('../controllers/RecipeController');
+const FavoriteController = require('../controllers/FavoriteController');
 
 const authController = new AuthController();
 const recipeController = new RecipeController();
+const favoriteController = new FavoriteController();
 
 router.get('/signup', authController.renserSignUp);
 
@@ -25,15 +27,9 @@ router.get('/recipe-page', (req, res) => {
   res.render("recipe-page", {errors: null, message: null})
 });
 
-router.get('/recipies', (req, res) => {
-  if (req.session.userLoggedIn) {
-    res.render("recipies", {errors: null, message: null})
+router.get('/recipies', recipeController.fetchRecipes);
 
-  }else {
-    res.render("login", {errors: ['Please login to continue'], message: null})
-  }
-});
-
+router.get('/get-recipies', recipeController.getAllRecipes);
 router.get('/forgot-password', (req, res) => {
   res.render("forgot-password", {errors: null, message: null})
 });
@@ -71,9 +67,17 @@ router.get('/logout', (req, res) => {
 
 router.get('/verify/:token', authController.verifyUser);
 
+router.get('/get-current-user', authController.getCurrentUser);
+
 router.post('/register', authController.signUp);
 
 router.post('/login', authController.logIn);
+
+router.get("/logout", (req, res) => {
+  req.session.email = "";
+  req.session.userLoggedIn = false;
+  res.render("login", {errors: null, message: 'User logged out'})
+});
 
 //ADD RECIPE
 router.get('/add-recipe', (req, res) => {
@@ -82,7 +86,25 @@ router.get('/add-recipe', (req, res) => {
 
 router.post('/add-recipe', recipeController.addRecipe);
 
+router.post('/add-favorite', favoriteController.addFavorite);
+
+router.get('/get-favorites/:user', favoriteController.getFavorites);
 
 
+router.get('/get-host', (req, res) => {
+  if (process.env.HOST) {
+    return res.status(200).json({
+      status: 'success',
+      message: 'host retrieved',
+      data: process.env.HOST,
+    });
+  }else {
+    return res.status(400).json({
+      status: 'error',
+      message: 'no added host in env',
+    });
+  }
+  
+});
 
 module.exports = router;

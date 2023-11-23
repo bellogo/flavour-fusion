@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     console.log('jhgj');
     const heroContainer = document.querySelector(".hero-inner-container");
@@ -139,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var input = document.createElement("input");
         ingredientContainer.classList.add("ingredient-container")
         input.type = "text";
-        input.name = "ingredient";
+        input.name = "ingredients";
         var deleteButton = createDeleteButton(input);
         ingredientContainer.appendChild(input);
         ingredientContainer.appendChild(deleteButton);
@@ -176,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function createInstructionInput(stepNumber) {
         var instructionInput = document.createElement("input");
         instructionInput.type = "text";
-        instructionInput.name = "instruction";
+        instructionInput.name = "instructions";
         instructionInput.placeholder = "Instruction for Step " + stepNumber;
         instructionInput.required = true;
         return instructionInput;
@@ -288,5 +289,7 @@ function displayResults(recipes) {
         
     
     });
+
+    
 }
 

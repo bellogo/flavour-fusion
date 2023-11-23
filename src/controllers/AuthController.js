@@ -9,6 +9,7 @@ const {
   hashPassword,
   validateRequest,
   verifyJWT,
+  statusCode
 } = require("../utilities/helper");
 const UserRepository = require("../repositories/UserRepo");
 const { nodeEnv } = require('../../config');
@@ -183,6 +184,29 @@ module.exports = class AuthController extends MainController {
     }
   };
 
+  getCurrentUser = async (req, res) => {
+    try {
+      if(req.session.userLoggedIn){
+        const user = await this.mainRepo.getModelByCondition({email: req.session.email});
+        // return res.json({user: user._id});
+        return res.status(200).json({
+          status: 'success',
+          message: 'Current user gotten successfully',
+          data: { user:  user._id },
+        });
+      }else {
+        return res.status(400).json({
+          status: 'error',
+          message: 'no logged-in user',
+          data: null
+        });
+      }
+      
+    } catch (err) {
+      console.log(err);
+      return res.json({message: "an error occured"});
+    }
+  };
   /**
    *
    * user signup controller
