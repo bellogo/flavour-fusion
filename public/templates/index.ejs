@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com">
-    <title>Flavor Fusion</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net; script-src-elem 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src-elem 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;">
+
+    <title>User</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/login.css">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="../css/about-us.css">
 </head>
+
 <body>
     
     <div class="hero-main-container">
@@ -45,7 +47,7 @@
             </div>
         </header>
     </div>
-    <div class="burger-menu" onclick="toggleNavbar()">
+    <div class="burger-menu" id="burgerMenu">
         <i class="fas fa-bars"></i>
     </div>
     <%- include('../layouts/error'); -%>
@@ -60,7 +62,7 @@
             <li class="nav-item"><a href="/login">Login</a></li>
             <li class="nav-item"><a href="/register">Sign Up</a></li>
         </ul>
-        <div class="close-btn" onclick="toggleNavbar()">×</div>
+        <div class="close-btn" id="closeBtn">×</div>
     </div>
 
     <div class="content-container">
@@ -178,9 +180,8 @@
         </div>
         <p>Flavor Fusion , All Rights Reserved</p>
     </footer>
-    <script>
-    
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-wC1QSH7M2N4Etxf3J5Y0MKYRiHegBJHjXlP9/NL9V5z59PaOreY8Jicf1Y8JbX8b" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-LuEZAbn1l2b6lP4j8h07R1UJwG0kMAq3fKc/BF5E4yFkw0ArK3s5pP0Ri/bS0/EP" crossorigin="anonymous"></script>
     <script src="../js/script.js"></script>
 </body>
 </html>
