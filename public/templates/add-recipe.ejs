@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'self' https://cdn.jsdelivr.net; script-src-elem 'unsafe-inline' 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src-elem 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;">
+
+    <title>User</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/login.css">
@@ -13,6 +15,7 @@
     <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="../css/about-us.css">
 </head>
+
 <body>
     <div class="hero-main-container">
         <header class="hero-inner-container">
@@ -43,7 +46,7 @@
             </div>
         </header>
     </div>
-    <div class="burger-menu" onclick="toggleNavbar()">
+    <div class="burger-menu" id="burgerMenu">
         <i class="fas fa-bars"></i>
     </div>
     <%- include('../layouts/error'); -%>
@@ -58,18 +61,19 @@
             <li class="nav-item"><a href="/login">Login</a></li>
             <li class="nav-item"><a href="/register">Sign Up</a></li>
         </ul>
-        <div class="close-btn" onclick="toggleNavbar()">×</div>
+        <div class="close-btn" id="closeBtn">×</div>
     </div>
 
 
     <div class="content-container">
         <div class="add-recipe-main-container">
             <h1>Add a New Recipe</h1>
-            <form id="recipeForm">
+            <button id="trial" >perform magic</button>
+            <form id="recipeForm" action="" method="Post">
                 <div>
 
-                    <label for="recipeName">Recipe Name:</label>
-                    <input type="text" id="recipeName" name="recipeName" required>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
 
                 <div>
@@ -78,19 +82,29 @@
                 </div>
 
                 <div>
-                    <label for="prepTime">Prep Time (minutes):</label>
-                    <input type="number" id="prepTime" name="prepTime" required>
+
+                    <label for="image">Image:</label>
+                    <input type="text" id="image" name="image" required>
                 </div>
 
                 <div>
-                    <label for="cookTime">Cook Time (minutes):</label>
-                    <input type="number" id="cookTime" name="cookTime" required>
+                    <label for="source">Source:</label>
+                    <input type="text" id="source" name="source" required>
                 </div>
 
                 <div>
-                    <label for="servings">Number of Servings:</label>
-                    <input type="number" id="servings" name="servings" required>
+                    <label for="source_url">Source Link:</label>
+                    <input type="text" id="source_url" name="source_url" required>
                 </div>
+                <div>
+                    <label for="calories">Calories:</label>
+                    <input type="number" id="calories" name="calories" required>
+                </div>
+                <div>
+                    <label for="video">Video link:</label>
+                    <input type="text" id="video" name="video" required>
+                </div>
+                
 
                 <div>
                     <label>Ingredients:</label>
@@ -99,7 +113,7 @@
                         <div class="ingredients-inner-container">
                             
                         </div>
-                        <button type="button" onclick="addIngredient()">Add Ingredient</button>
+                        <button type="button" id="addIngredientButton">Add Ingredient</button>
                     </div>
                 </div>
 
@@ -111,11 +125,12 @@
                         <div class="instructions-inner-container">
                             
                         </div>
-                        <button type="button" onclick="addInstruction()">Add Step</button>
+                        <button type="button" id="addInstructionButton">Add Step</button>
                         
                     </div>
                 </div>
-
+                
+                
                 <button id="recipeSubmit" type="submit">Submit Recipe</button>
             </form>
         </div>
@@ -141,91 +156,7 @@
         </div>
         <p>Flavor Fusion , All Rights Reserved</p>
     </footer>
-
-    <script>
-
-        function addIngredient() {
-            var container = document.querySelector(".ingredients-inner-container");
-            var ingredientContainer = document.createElement("div")
-            var input = document.createElement("input");
-            ingredientContainer.classList.add("ingredient-container")
-            input.type = "text";
-            input.name = "ingredient";
-            var deleteButton = createDeleteButton(input);
-            ingredientContainer.appendChild(input);
-            ingredientContainer.appendChild(deleteButton);
-
-            container.appendChild(ingredientContainer)
-        }
-
-
-        function addInstruction() {
-            var container = document.querySelector(".instructions-inner-container");
-            var instructionContainer = document.createElement("div")
-            instructionContainer.classList.add("instruction-container")
-            var stepNumber = container.childElementCount + 1; 
-
-            var stepInput = createStepHeader(stepNumber);
-
-            var instructionInput = createInstructionInput(stepNumber);
-            var deleteButton = createDeleteButton(instructionInput);
-            instructionContainer.appendChild(stepInput);
-            instructionContainer.appendChild(instructionInput);
-            instructionContainer.appendChild(deleteButton);
-
-            container.appendChild(instructionContainer)
-        }
-
-
-        function createStepHeader(stepNumber) {
-            var stepHeader = document.createElement("h4");
-            stepHeader.textContent = "Step " + stepNumber;
-            return stepHeader;
-        }
-
-        
-        function createInstructionInput(stepNumber) {
-            var instructionInput = document.createElement("input");
-            instructionInput.type = "text";
-            instructionInput.name = "instruction";
-            instructionInput.placeholder = "Instruction for Step " + stepNumber;
-            instructionInput.required = true;
-            return instructionInput;
-        }
-        
-
-        function createDeleteButton(targetInput) {
-            var deleteButton = document.createElement("button");
-            deleteButton.type = "button";
-            deleteButton.className = "delete-button";
-            deleteButton.textContent = "Delete";
-            deleteButton.onclick = function () {
-                var parent = deleteButton.parentNode;
-                var containerElement = parent.parentElement
-                
-                containerElement.removeChild(parent); 
-
-                updateStepNumbers(containerElement);
-            };
-            return deleteButton;
-        }
-        function updateStepNumbers(container) {
-            var children = container.children;
-            // console.log(children)
-            for (var i = 0; i < children.length; i++) {
-                var stepHeader = children[i].querySelector("h4");
-                var parent = stepHeader.parentElement
-                var inputInstruction = parent.querySelector('input')
-                // console.log(stepHeader)
-                // console.log(parent)
-                if (stepHeader) {
-                    stepHeader.textContent = "Step " + (i + 1);
-                    inputInstruction.placeholder = "Instruction for Step " + (i + 1);
-                }
-            }
-        }
-    </script>
-
+    
     <script src="../js/script.js"></script>
 </body>
 </html>

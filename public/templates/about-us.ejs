@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net; script-src-elem 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src-elem 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;">
+
+    <title>User</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/login.css">
@@ -13,6 +15,7 @@
     <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="../css/about-us.css">
 </head>
+
 <body>
     <div class="hero-main-container">
         <header class="hero-inner-container">
@@ -43,10 +46,11 @@
             </div>
         </header>
     </div>
-    <div class="burger-menu" onclick="toggleNavbar()">
+    <div class="burger-menu" id="burgerMenu">
         <i class="fas fa-bars"></i>
     </div>
     <%- include('../layouts/error'); -%>
+    
     <!-- responsive navigation bar -->
     <div class="navbar-responsive" id="navbarResponsive">
         <ul class="nav-bar-inner-container">
@@ -58,7 +62,7 @@
             <li class="nav-item"><a href="/login">Login</a></li>
             <li class="nav-item"><a href="/register">Sign Up</a></li>
         </ul>
-        <div class="close-btn" onclick="toggleNavbar()">×</div>
+        <div class="close-btn" id="closeBtn">×</div>
     </div>
    
     
@@ -105,6 +109,7 @@
         </div>
         <p>Flavor Fusion , All Rights Reserved</p>
     </footer>
+    
     <script src="/js/script.js"></script>
 </body>
 </html>
