@@ -1,27 +1,4 @@
-async function getCurrentUser() {
-    try {
-        const response = await fetch('/get-current-user', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-        });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const user = data.data.user;
-        // console.log(user);
-        return user;
-    } catch (error) {
-        console.error('Error getting current user:', error);
-        
-        throw error;
-    }
-}
 
 async function getUserFavorites() {
     try {
