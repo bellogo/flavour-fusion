@@ -44,7 +44,7 @@ module.exports = class RecipeController extends MainController {
       const errors = await validateRequest(req.body, res, schema);
       console.log("errors", errors);
       if (errors) {
-        res.render("register", {
+        res.render("add-recipe", {
           errors: errors,
          message: null
         });
@@ -54,18 +54,25 @@ module.exports = class RecipeController extends MainController {
 
       const allRecipes = await this.mainRepo.getCollection();
       // console.log(allRecipes);
-      return res.render("recipies", {errors: null, message: "Recipe added successful"})
+      console.log('gfsd', req.session.user);
+      // return res.render("recipies", {errors: null, message: "Recipe added successful"})
+      return res.render("recipies", {
+        errors: null,
+        message: "Recipe added successful",
+        endpoint: 'edamamApiEndpoint',
+        userId: req.session.user
+      });
     
     } catch (err) {
       console.log('error', err);
 
       if(err.code === 11000) {
-       return res.render("register", {
+       return res.render("add-recipe", {
           errors: [`${Object.keys(err.keyValue)[0]} already exists`],
           message: null
         });
       }
-      return res.render("register", {
+      return res.render("add-recipe", {
         errors: ["An error occured"], message: null
       });
     }

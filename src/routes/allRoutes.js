@@ -27,6 +27,10 @@ router.get('/recipe-page', (req, res) => {
   res.render("recipe-page", {errors: null, message: null})
 });
 
+router.get('/user', (req, res) => {
+  res.render("user", {errors: null, message: null})
+});
+
 router.get('/recipies', recipeController.fetchRecipes);
 router.get('/view-recipe/recipe', recipeController.getSingleRecipe);
 

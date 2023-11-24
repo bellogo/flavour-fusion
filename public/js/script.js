@@ -94,7 +94,7 @@ function addIngredient() {
     var input = document.createElement("input");
     ingredientContainer.classList.add("ingredient-container")
     input.type = "text";
-    input.name = "ingredient";
+    input.name = "ingredients";
     var deleteButton = createDeleteButton(input);
     ingredientContainer.appendChild(input);
     ingredientContainer.appendChild(deleteButton);
@@ -131,7 +131,7 @@ function createStepHeader(stepNumber) {
 function createInstructionInput(stepNumber) {
     var instructionInput = document.createElement("input");
     instructionInput.type = "text";
-    instructionInput.name = "instruction";
+    instructionInput.name = "instructions";
     instructionInput.placeholder = "Instruction for Step " + stepNumber;
     instructionInput.required = true;
     return instructionInput;
