@@ -341,6 +341,20 @@ input,textarea{
     margin-right: auto;
 }
 
+.error-main-container{
+    position: relative;
+}
+
+.errors-inner-container{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    /* background-color: red; */
+}
+.errors-inner-container div{
+    margin: 0;
+}
+
 /* ##########  About us Index ############### */
 .index-about-us-container{
     /* height: 30rem; */

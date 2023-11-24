@@ -28,6 +28,7 @@ router.get('/recipe-page', (req, res) => {
 });
 
 router.get('/recipies', recipeController.fetchRecipes);
+router.get('/view-recipe/recipe', recipeController.getSingleRecipe);
 
 router.get('/get-recipies', recipeController.getAllRecipes);
 router.get('/forgot-password', (req, res) => {
