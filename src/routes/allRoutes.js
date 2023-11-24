@@ -28,7 +28,13 @@ router.get('/recipe-page', (req, res) => {
 });
 
 router.get('/user', (req, res) => {
-  res.render("user", {errors: null, message: null})
+  if (req.session.userLoggedIn) {
+
+    res.render("user", {errors: null, message: null})
+
+  }else {
+    res.render("login", {errors: ['Please login to continue'], message: null})
+  }
 });
 
 router.get('/recipies', recipeController.fetchRecipes);
@@ -44,9 +50,6 @@ router.get('/about-us', (req, res) => {
   res.render("about-us", {errors: null, message: null})
 });
 
-router.get('/user', (req, res) => {
-  res.render("user", {errors: null, message: null})
-});
 
 
 router.get('/forgot-password', (req, res) => {

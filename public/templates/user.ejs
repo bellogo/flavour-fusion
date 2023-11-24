@@ -40,9 +40,13 @@
                 </nav>
                 <div class="user-check-container">
                     <ul class="nav-bar-inner-container">
-                        
-                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <% if (message === 'logged-in') { %>
+                            <li class="nav-item"><a href="/login">Login</a></li>
                         <li class="nav-item"><a href="/register">Sign Up</a></li>
+                        <% } else { %>
+                            <li class="nav-item"><a href="/logout">Logout</a></li>
+                            <%}%>
+                        
                     </ul>
                 </div>
             </div>
