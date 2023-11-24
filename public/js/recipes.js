@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-    try{
-        const userId = document.getElementById('userIdInput').value;
-    }catch{
-
-    }
-        
-    
+ 
+    const userId = getCurrentUser()
+    // console.log(userId)
     try{
 
         document.getElementById('recipeSearchBtn').addEventListener('click', function() {
+
             searchRecipes(userId);
             
         
