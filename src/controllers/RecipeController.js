@@ -8,6 +8,7 @@ const {
 const RecipeRepository = require("../repositories/RecipeRepo");
 const { nodeEnv } = require('../../config');
 const SendGrid = require("../services/sendgrid");
+const axios = require('axios');
 
 
 module.exports = class RecipeController extends MainController {
@@ -134,6 +135,29 @@ module.exports = class RecipeController extends MainController {
         status: 'error',
         message: 'an error occured',
       });
+    }
+  };
+
+   /**
+   *
+   * fetch recipes
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @return {*}
+   */
+   fetchLocal = async (req, res) => {
+    try {
+      const { apiUrl } = req.query;
+      const response = await axios.get(apiUrl);
+      
+      return res.json(response.data)
+    
+    
+    } catch (err) {
+      console.log('error', err);
+
+      
     }
   };
 
