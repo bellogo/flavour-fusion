@@ -114,12 +114,13 @@ function displayResults(recipes,userId) {
                                 <input type="hidden" value="${recipe.recipe.uri}" />
                                 <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
                                 
-                                <i class="fa-regular fa-bookmark save-recipe-icon" data-edamam-uri="${recipe.recipe.uri}"></i>
+                                
                                 <h4 class="recipe-title">${recipe.recipe.label}</h4>
                                 <a class="btn btn-recipe" href="/view-recipe/recipe?uri=${encodedUri}" target="_blank">View</a>`;
 
         recipeContainer.appendChild(recipeDiv);
 
+        // <i class="fa-regular fa-bookmark save-recipe-icon" data-edamam-uri="${recipe.recipe.uri}"></i>
 
     });
     var saveIcons = document.querySelectorAll('.save-recipe-icon');
