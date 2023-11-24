@@ -149,8 +149,4 @@ function displayUserResults(favoritesRecipesContainer,recipe,userId) {
     
 }
 
-const getFavoriteButton = document.getElementById('favoritesButton')
-getFavoriteButton.addEventListener('click', (e) =>{
-    e.preventDefault()
-    getUserFavorites()
-})
+getUserFavorites()

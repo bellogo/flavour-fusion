@@ -27,15 +27,22 @@ router.get('/recipe-page', (req, res) => {
   res.render("recipe-page", {errors: null, message: null})
 });
 
-router.get('/user', (req, res) => {
-  if (req.session.userLoggedIn) {
+router.get('/our-recipe-page', (req, res) => {
+  res.render("our-recipe-page", {errors: null, message: null})
+});
 
-    res.render("user", {errors: null, message: null})
+router.get('/user', recipeController.renderUserPage);
+
+router.get('/favorites', (req, res) => {
+  if (req.session.userLoggedIn) {
+    
+    res.render("favorites", {errors: null, message: null, recipes: null})
+
 
   }else {
     res.render("login", {errors: ['Please login to continue'], message: null})
   }
-});
+}); 
 
 router.get('/recipies', recipeController.fetchRecipes);
 
@@ -62,7 +69,7 @@ router.get('/login', (req, res) => {
 
 router.get('/register', (req, res) => {
   if (req.session.userLoggedIn) {
-    res.render("register", {errors: null, message: 'logged-in'})
+    res.render("register", {errors: null, message: null})
 
   }
   res.render("register", {errors: null, message: null})
