@@ -83,11 +83,19 @@ module.exports = class RecipeController extends MainController {
    */
    fetchRecipes = async (req, res) => {
     try {
+      // // for testing 
+      // const allRecipes = await this.mainRepo.getCollection();
+      //   // console.log(allRecipes);
+      // res.render("recipies", {errors: null, message: null, recipes: allRecipes.records})
 
+
+      // --original data
       if (req.session.userLoggedIn) {
+
+        // console.log(req.session.user)
         const allRecipes = await this.mainRepo.getCollection();
         // console.log(allRecipes);
-        res.render("recipies", {errors: null, message: null, recipes: allRecipes.records})
+        res.render("recipies", {errors: null, message: null, recipes: allRecipes.records,userId: req.session.user})
     
       }else {
         res.render("login", {errors: ['Please login to continue'], message: null})
@@ -121,6 +129,7 @@ module.exports = class RecipeController extends MainController {
           status: 'success',
           message: 'fetched local recipes',
           data: allRecipes.records,
+          
         });
     } catch (err) {
       console.log('error', err);
@@ -162,4 +171,35 @@ module.exports = class RecipeController extends MainController {
   };
 
  
+  getSingleRecipe = async (req, res) => {
+    try {
+
+        const uriValue = req.query.uri;
+        console.log(uriValue)
+        // res.json({"message": "received request"})
+       
+        const appId = 'fbf980cd'; 
+        const appKey = '17f290186199c2129b0e48087b583767';
+        // get the edamam ednpoint
+        const edamamApiEndpoint = `https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=${encodeURIComponent(uriValue)}&app_id=${appId}&app_key=${appKey}`;
+
+        
+        
+        // res.status(edamamResponse.status).json(edamamResponse.data);
+        
+        return res.render("recipe-page", {
+          errors: null,
+          message: null,
+          endpoint: edamamApiEndpoint,
+          userId: req.session.user
+        });
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        status: 'error',
+        message: 'an error occured while fetching recipe',
+      });
+    }
+  };
+
 };

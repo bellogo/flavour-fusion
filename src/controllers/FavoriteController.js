@@ -25,9 +25,14 @@ module.exports = class FavoriteController extends MainController {
    * @return {*}
    */
   addFavorite = async (req, res) => {
+
+    console.log("req body: ",req.body)
     try {
       const schema = Joi.object({
+
+        
         user: Joi.string().required(), // Assuming user is a string representation of ObjectId
+
         edamam_uri: Joi.string().required(),
       });
 
