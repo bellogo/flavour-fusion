@@ -32,6 +32,7 @@ router.get('/user', (req, res) => {
 });
 
 router.get('/recipies', recipeController.fetchRecipes);
+
 router.get('/view-recipe/recipe', recipeController.getSingleRecipe);
 
 router.get('/get-recipies', recipeController.getAllRecipes);
@@ -86,7 +87,13 @@ router.get("/logout", (req, res) => {
 
 //ADD RECIPE
 router.get('/add-recipe', (req, res) => {
-  res.render("add-recipe", {errors: null, message: null})
+  if (req.session.userLoggedIn) {
+
+    res.render("add-recipe", {errors: null, message: null})
+
+  }else {
+    res.render("login", {errors: ['Please login to continue'], message: null})
+  }
 });
 
 router.post('/add-recipe', recipeController.addRecipe);

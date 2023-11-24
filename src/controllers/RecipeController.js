@@ -32,7 +32,7 @@ module.exports = class RecipeController extends MainController {
       const schema = Joi.object({
         name: Joi.string().required(),
         description: Joi.string().required(),
-        image: Joi.string().required(),
+        image: Joi.string(),
         ingredients: Joi.array().items(Joi.string()).required(),
         instructions: Joi.array().items(Joi.string()).required(),
         source: Joi.string(),
@@ -50,17 +50,26 @@ module.exports = class RecipeController extends MainController {
         });
       }
 
-      const recipe = await this.mainRepo.create(req.body);
+      let imageName = req.files.image.name;
+      let image = req.files.image;
+      //Path to store the image on server
+      let imagePath = "public/images/" + imageName;
+      //Path saved to db
+      let pageImage = "images/" + imageName;
+      //Save image on server
+      image.mv(imagePath, function (err) {
+          console.log(err);
+      });
+
+      const recipe = await this.mainRepo.create({...req.body, image: pageImage});
 
       const allRecipes = await this.mainRepo.getCollection();
       // console.log(allRecipes);
-      console.log('gfsd', req.session.user);
+      console.log('gfsd', req.session);
       // return res.render("recipies", {errors: null, message: "Recipe added successful"})
-      return res.render("recipies", {
+      return res.render("user", {
         errors: null,
-        message: "Recipe added successful",
-        endpoint: 'edamamApiEndpoint',
-        userId: req.session.user
+        message: "Recipe added successful"
       });
     
     } catch (err) {

@@ -21,6 +21,9 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/public/templates"));
 app.use(express.static(__dirname + "/public/"));
 
+// Middleware for file upload
+const fileUpload = require("express-fileupload");
+app.use(fileUpload());
 
 app.use(helmet.contentSecurityPolicy({
   directives: {

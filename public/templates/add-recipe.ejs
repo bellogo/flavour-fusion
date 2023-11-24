@@ -39,9 +39,13 @@
                 </nav>
                 <div class="user-check-container">
                     <ul class="nav-bar-inner-container">
-                        
-                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <% if (message === 'logged-in') { %>
+                            <li class="nav-item"><a href="/login">Login</a></li>
                         <li class="nav-item"><a href="/register">Sign Up</a></li>
+                        <% } else { %>
+                            <li class="nav-item"><a href="/logout">Logout</a></li>
+                            <%}%>
+                        
                     </ul>
                 </div>
             </div>
@@ -73,8 +77,7 @@
     <div class="content-container">
         <div class="add-recipe-main-container">
             <h1>Add a New Recipe</h1>
-            <button id="trial" >perform magic</button>
-            <form id="recipeForm" action="" method="Post">
+            <form id="recipeForm" action="" method="Post" enctype="multipart/form-data">
                 <div>
 
                     <label for="name">Name:</label>
@@ -89,7 +92,7 @@
                 <div>
 
                     <label for="image">Image:</label>
-                    <input type="text" id="image" name="image" required>
+                    <input type="file" id="image" name="image" required>
                 </div>
 
                 <div>
