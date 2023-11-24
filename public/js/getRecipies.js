@@ -51,13 +51,21 @@ async function getUserFavorites() {
                 const response = await fetch(apiUrl);
                 
                 if (!response.ok) {
+                    
+                    
                     throw new Error(`HTTP error! Status: ${response.status}`);
+
                 }
     
                 const recipeData = await response.json();
                 const recipeFullData = recipeData.hits[0];
-                displayUserResults(favoritesRecipesContainer,recipeFullData, user)
-               
+                if(recipeFullData.length > 0){
+
+                    displayUserResults(favoritesRecipesContainer,recipeFullData, user)
+                }else{
+                    const errorMessage = `<p> No Favorites added </p`
+                    favoritesRecipesContainer.innerHTML = errorMessage;
+                }
             } catch (error) {
                 console.error('Error fetching data for recipe:', error);
                 
