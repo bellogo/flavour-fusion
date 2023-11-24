@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const userId = document.getElementById('userIdInput').value;
+
+    try{
+        const userId = document.getElementById('userIdInput').value;
+    }catch{
+
+    }
+        
     
     try{
 
@@ -128,9 +134,7 @@ function displayResults(recipes,userId) {
             event.preventDefault()
             var edamamUri = icon.getAttribute('data-edamam-uri');
 
-            // Get the user ID from the hidden input
-            // var userId = document.getElementById('userIdInput').value;
-            // console.log(userId,edamamUri)
+            
             saveRecipe(icon, userId,edamamUri)
         });
     });
@@ -168,4 +172,5 @@ function saveRecipe(icon, userId, edamamUri) {
         console.error('Error adding favorite:', error);
     });
 }
+
 
