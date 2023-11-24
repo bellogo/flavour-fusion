@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const ContainerElement = document.querySelector(".single-recipe-container")
+    const ContainerElement = document.querySelector(".single-recipe-container");
+    
     try{
+        const userId = document.getElementById('userIdInput').value;
         const recipeApiEndpointInput = document.querySelector('#recipeApiEndpoint');
 
         
         const edamamApiEndpoint = recipeApiEndpointInput.value;
-        viewRecipeDetails(edamamApiEndpoint)
+        viewRecipeDetails(edamamApiEndpoint,userId)
     }catch(error){
         ContainerElement.innerHTML = `<p> No records Found </p>`;
     }
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-function viewRecipeDetails(edamamApiEndpoint) {
+function viewRecipeDetails(edamamApiEndpoint,userId) {
     
     const ContainerElement = document.querySelector(".single-recipe-container")
     
@@ -25,7 +27,7 @@ function viewRecipeDetails(edamamApiEndpoint) {
                     recipe = data.hits[0].recipe
 
                         
-                        console.log(ContainerElement)
+                        // console.log(ContainerElement)
                         if(ContainerElement){
 
                         const createRecipe = `<div class="recipe-page">
@@ -55,13 +57,14 @@ function viewRecipeDetails(edamamApiEndpoint) {
                                     
                                     <div>
                                         <input type="hidden" value="${recipe.uri}" />
-                                        <button id="saveRecipe"><i class="fa-regular fa-bookmark recipe-page-save" onclick="saveRecipe(this)"></i></button>
+                                        
+                                        <i class="fa-regular fa-bookmark save-recipe-icon" id="saveRecipeIcon" data-edamam-uri="${recipe.uri}"></i>
                                         
                                         <h5>Add to Favourites</h5>
                                         
                                     </div>
                                     <div>
-                                        <button id="shareRecipe" onclick="copyToClipboard()">
+                                            <button id="shareRecipe">
                                             <i class="fa-solid fa-share-from-square"></i>
                                         </button>
                                         <h5>share</h5>
@@ -121,7 +124,22 @@ function viewRecipeDetails(edamamApiEndpoint) {
                         </section>
                     </div>`
                     
-                    ContainerElement.innerHTML = createRecipe
+                        ContainerElement.innerHTML = createRecipe;
+                        // console.log("ele",ContainerElement)
+                        document.getElementById('shareRecipe').addEventListener('click', copyToClipboard);
+                        saveRecipeIcon = ContainerElement.querySelector('#saveRecipeIcon');
+
+                    
+                        saveRecipeIcon.addEventListener('click', function (event) {
+                            event.preventDefault()
+                            var edamamUri = saveRecipeIcon.getAttribute('data-edamam-uri');
+                            console.log(edamamUri)
+                            // Get the user ID from the hidden input
+                            // var userId = document.getElementById('userIdInput').value;
+                            // console.log(userId,edamamUri)
+                            saveRecipe(saveRecipeIcon, userId,edamamUri)
+                        });
+
                         }
                     else{
                         console.log("eleement not found")
@@ -129,7 +147,11 @@ function viewRecipeDetails(edamamApiEndpoint) {
                 })
                 .catch((error) => {
                     console.error("Error fetching recipe details:", error);
-                });;
+                });
+    
+                
+                
+
 }
 
 
@@ -151,3 +173,31 @@ function fetchRecipeData(uri) {
         });
 }
 
+
+
+function copyToClipboard() {
+    // get the url of the page
+    const currentUrl = window.location.href;
+
+    const input = document.createElement('input');
+    input.value = currentUrl;
+    document.body.appendChild(input);
+
+    // select the URL in the textarea and copy it to the clipboard
+    input.select();
+    document.execCommand('copy');
+
+    // remove the temporary textarea
+    document.body.removeChild(input);
+
+    // display the "link copied" message with green color
+    const copyStatus = document.getElementById('copyStatus');
+    copyStatus.textContent = 'Link copied';
+    copyStatus.classList.add('copied');
+
+    // reset the color after a short delay
+    setTimeout(() => {
+        copyStatus.textContent = '';
+        copyStatus.classList.remove('copied');
+    }, 2000); 
+}

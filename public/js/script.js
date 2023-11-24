@@ -48,33 +48,6 @@ function toggleFilter() {
 
 
 
-function copyToClipboard() {
-    // get the url of the page
-    const currentUrl = window.location.href;
-
-    const input = document.createElement('input');
-    input.value = currentUrl;
-    document.body.appendChild(input);
-
-    // select the URL in the textarea and copy it to the clipboard
-    input.select();
-    document.execCommand('copy');
-
-    // remove the temporary textarea
-    document.body.removeChild(input);
-
-    // display the "link copied" message with green color
-    const copyStatus = document.getElementById('copyStatus');
-    copyStatus.textContent = 'Link copied';
-    copyStatus.classList.add('copied');
-
-    // reset the color after a short delay
-    setTimeout(() => {
-        copyStatus.textContent = '';
-        copyStatus.classList.remove('copied');
-    }, 2000); 
-}
-
 
 document.addEventListener("DOMContentLoaded", function () {
     

@@ -166,7 +166,8 @@ module.exports = class RecipeController extends MainController {
         return res.render("recipe-page", {
           errors: null,
           message: null,
-          endpoint: edamamApiEndpoint
+          endpoint: edamamApiEndpoint,
+          userId: req.session.user
         });
     } catch (err) {
       console.log(err)

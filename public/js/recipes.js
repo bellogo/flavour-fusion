@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const userId = document.getElementById('userIdInput').value;
+    
     try{
 
         document.getElementById('recipeSearchBtn').addEventListener('click', function() {
@@ -16,6 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }catch{
 
     }
+    try{
+        document.getElementById('toggleFilter').addEventListener('click', toggleFilter);
+    }catch{
+        
+    }
+    
 });
 
 function searchRecipes(userId) {
@@ -128,5 +135,37 @@ function displayResults(recipes,userId) {
         });
     });
     
+}
+
+function saveRecipe(icon, userId, edamamUri) { 
+
+    fetch('/add-favorite', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            user: userId,
+            edamam_uri: edamamUri,
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Favorite added successfully:', data);
+        // toggle the icon classes
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+        icon.classList.add('saved')
+        
+    })
+    .catch(error => {
+        console.error('Error adding favorite:', error);
+    });
 }
 
