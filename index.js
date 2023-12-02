@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const path = require("path");
 const session = require("express-session");
 const { port } = require('./config');
+const { dbUrl } = require('./config');
 
 // const corsOptions = {
 //   origin: '*',
@@ -48,7 +49,7 @@ const routes = require('./src/routes'); // Import your welcome route
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://bellogo:1234@netflix-skinny-double.mozzv.mongodb.net/flavour-fusion?retryWrites=true&w=majority', {
+mongoose.connect( dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
