@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;">
-    <meta http-equiv="Content-Security-Policy" content="img-src 'self' https://www.shutterstock.com https://www.adobe.com">
+    
+
 
     <title>Recipies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/recipe.css">
@@ -28,10 +29,11 @@
                 <nav class="navbar-main-container" id="navbar">
                     <ul class="nav-bar-inner-container">
                         <li class="nav-item"><a href="/index">Home</a></li>
-                        <li class="nav-item"><a href="/recipies">Recipes</a></li>
+                        <li class="nav-item"><a href="/recipies">Search</a></li>
                         <li class="nav-item"><a href="/about-us">About US</a></li>
                         <li class="nav-item"><a href="/contact">Contact</a></li>
                         <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+                        <li class="nav-item"><a href="/user">Recipes</a></li>
                         
                         
                     </ul>
@@ -53,124 +55,134 @@
     <div class="burger-menu" id="burgerMenu">
         <i class="fas fa-bars"></i>
     </div>
-    <%- include('../layouts/error'); -%>
+    <div class="error-main-container">
+
+        <%- include('../layouts/error'); -%>
+    </div>
     <!-- responsive navigation bar -->
     <div class="navbar-responsive" id="navbarResponsive">
         <ul class="nav-bar-inner-container">
             <li class="nav-item"><a href="/index">Home</a></li>
-            <li class="nav-item"><a href="/recipies">Recipes</a></li>
+            <li class="nav-item"><a href="/recipies">Search</a></li>
             <li class="nav-item"><a href="/about-us">About US</a></li>
             <li class="nav-item"><a href="/contact">Contact</a></li>
             <li class="nav-item"><a href="/add-recipe">Add Recipe</a></li>
+            <li class="nav-item"><a href="/user">Recipes</a></li>
             <li class="nav-item"><a href="/login">Login</a></li>
             <li class="nav-item"><a href="/register">Sign Up</a></li>
         </ul>
         <div class="close-btn" id="closeBtn">×</div>
     </div>
 
-
+    <input type="hidden" id="userIdInput" value="<%= userId %>">
     <div class="content-container">
         <div class="recipies-main-container">
             
             <div id="filterContainer" class="filter-list-container">
                 <h4>Filter By</h4>
                 <form action="" class="filter-list-form" id="filterForm">
-                    <div class="filter-option">
-                        <div class="option-main">
-                            <label for="mealType">Meal Type: </label>
-
-                            <button class="dropdown-btn" type="button"><i class="fa-solid fa-caret-down"></i></button>
-                        </div>
-                        <div class="dropdown" id="mealTypeDropdown">
-                            
-                            
-                            <div class="dropdown-content">
-                                <!-- <div>
-
-                                    <input type="text" id="mealType" class="filter-input" placeholder="Search...">
-                                </div> -->
-                                <div>
-
-                                    <input type="checkbox" id="breakfast" name="breakfast">
-                                    <label for="breakfast">Breakfast</label>
-                                </div>
-                                <div>
-
-                                    <input type="checkbox" id="lunch" name="lunch">
-                                    <label for="lunch">Lunch</label>
-                                </div>
-                                <div>
-
-                                    <input type="checkbox" id="dinner" name="dinner">
-                                    <label for="dinner">Dinner</label>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="search-filter-cals" class="filter-group lst-links">
+                        <span class="lbl">Calories</span>
+                        <span class="cal-title-f">From</span> <input type="text" value="" class="from-to-area" maxlength="4" id="cal-from"><br> 
+                        <span class="cal-title-f">To</span> <input type="text" value="" class="from-to-area" maxlength="4" id="cal-to">
+                        <input type="hidden" value="" name="calories" id="calories-input">
+                        <span class="lbl">Ingredients</span>
+                        <span class="cal-title-f">Up to</span> <input type="text" value="" name="ingr" class="from-to-area" maxlength="4" id="ing-upto"> 												  
                     </div>
-        
-                    <div class="filter-option">
-                        <div class="option-main">
-
-                            <label for="ingredients">Ingredients: </label>
-                            <button class="dropdown-btn" type="button"><i class="fa-solid fa-caret-down"></i></button>
-                        </div>
-                        <div class="dropdown" id="ingredientsDropdown">
-                            
-                            <div class="dropdown-content">
-                                <!-- <div>
-
-                                    <input type="text" id="ingredients" class="filter-input" placeholder="Search...">
-                                </div> -->
-                                <div>
-
-                                    <input type="checkbox" id="ingredient1" name="ingredient1">
-                                    <label for="ingredient1">Ingredient 1</label>
-                                </div>
-                                <div>
-
-                                    <input type="checkbox" id="ingredient2" name="ingredient2">
-                                    <label for="ingredient2">Ingredient 2</label>
-                                </div>
-                                <div>
-
-                                    <input type="checkbox" id="ingredient3" name="ingredient3">
-                                    <label for="ingredient3">Ingredient 3</label>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="search-filter-diet" class="filter-group lst-links">
+                        <span class="lbl">Diet</span>
+                        <ul class="cf">
+                            <li class="itm">
+                                <label>Vegetarian</label>
+                                <input type="checkbox" value="vegetarian" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Vegan</label>
+                                <input type="checkbox" value="vegan" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Paleo</label>
+                                <input type="checkbox" value="paleo" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>High-Fiber</label>
+                                <input type="checkbox" value="high-fiber" name="diet">
+                            </li>
+                            <li class="itm">
+                                <label>High-Protein</label>
+                                <input type="checkbox" value="high-protein" name="diet">
+                            </li>
+                            <li class="itm">
+                                <label>Low-Carb</label>
+                                <input type="checkbox" value="low-carb" name="diet">
+                            </li>
+                            <li class="itm">
+                                <label>Low-Fat</label>
+                                <input type="checkbox" value="low-fat" name="diet">
+                            </li>
+                            <li class="itm">
+                                <label>Low-Sodium</label>
+                                <input type="checkbox" value="low-sodium" name="diet">
+                            </li>
+                            <li class="itm">
+                                <label>Low-Sugar</label>
+                                <input type="checkbox" value="sugar-conscious" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Alcohol-Free</label>
+                                <input type="checkbox" value="alcohol-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Balanced</label>
+                                <input type="checkbox" value="balanced" name="diet">
+                            </li>
+                            <li class="itm">
+                                <label>Immunity</label>
+                                <input type="checkbox" value="immuno-supportive" name="health">
+                            </li>
+                        </ul>
                     </div>
-        
-                    <div class="filter-option">
-                        <div class="option-main">
-
-                            <label for="cookingTime">Cooking Time: </label>
-                            <button class="dropdown-btn" type="button"><i class="fa-solid fa-caret-down"></i></button>
-                        </div>
-                        <div class="dropdown" id="cookingTimeDropdown">
-                            
-                            
-                            <div class="dropdown-content">
-                                <!-- <div>
-
-                                    <input type="text" id="ingredients" class="filter-input" placeholder="Search...">
-                                </div> -->
-                                <div>
-
-                                    <input type="checkbox" id="time30" name="time30">
-                                    <label for="time30">30 Minutes</label>
-                                </div>
-                                <div>
-
-                                    <input type="checkbox" id="time60" name="time60">
-                                    <label for="time60">1 Hour</label>
-                                </div>
-                                <div>
-
-                                    <input type="checkbox" id="time90" name="time90">
-                                    <label for="time90">1.5 Hours</label>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- /search-filter-diet -->
+                    <div id="search-filter-allergies" class="filter-group lst-links">
+                        <span class="lbl">Allergies</span>
+                        <ul class="cf">
+                            <li class="itm">
+                                <label>Gluten</label>
+                                <input type="checkbox" value="gluten-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Dairy</label>
+                                <input type="checkbox" value="dairy-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Eggs</label>
+                                <input type="checkbox" value="egg-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Soy</label>
+                                <input type="checkbox" value="soy-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Wheat</label>
+                                <input type="checkbox" value="wheat-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Fish</label>
+                                <input type="checkbox" value="fish-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Shellfish</label>
+                                <input type="checkbox" value="shellfish-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Tree Nuts</label>
+                                <input type="checkbox" value="tree-nut-free" name="health">
+                            </li>
+                            <li class="itm">
+                                <label>Peanuts</label>
+                                <input type="checkbox" value="peanut-free" name="health">
+                            </li>
+                        </ul>
                     </div>
         
                     <button type="button" class="btn filter-btn" id="filterButton">Filter</button>
@@ -178,109 +190,31 @@
             </div>
             <div class="recipies-inner-container">
                 <div class="recipe-search-container">
-                    <input type="text" class="input-search">
+                    <input type="text" class="input-search" id="recipeInput">
                     <button type="submit" class="recipeSearch" id="recipeSearchBtn">search</button>
                 </div>
                 <div class="recipe-filter-toogle-container" >
-                    <button type="button" id="toggleFilter" class="btn filter-btn" onclick="toggleFilter()">Filter</button>
+                    <button type="button" id="toggleFilter" class="btn filter-btn" >Filter</button>
                 </div>
-                <div class="total-recipies-container" >
-
-                    <%if(recipes){%>
-                        <%recipes.forEach(recipe => {%>
-                            <div class="recipe-container">
-                                <div class="recipe-image-container">
-            
-                                    <img src="<%= recipe.image %>" alt="jk">
-                                    <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
+                <div class="total-recipies-container empty-recipes" id="recipeContainer" >
+                    
+    
+                        <% if (recipes) { %>
+                            <% recipes.forEach(recipe => { %>
+                                <div class="recipe-container">
+                                    <div class="recipe-image-container">
+                                        <img src="<%= recipe.image %>" alt="jk">
+                                        
+                                    </div>
+                                    <h4 class="recipe-title"><%= recipe.name %></h4>
+                                    <a class="btn btn-recipe" href="/recipe-page">view</a>
                                 </div>
-                                
-                                <h4 class="recipe-title"><%= recipe.name %></h4>
-                                <a class="btn btn-recipe" href="/recipe-page">view</a>
-                                
-                            </div>
-                            <%  });%>
-                        <%}%>
-                        <div class="recipe-container">
-                        <div class="recipe-image-container">
-    
-                            <img src="../images/background-image-main.jpg" alt="">
-                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
-                        </div>
-                        
-                        <h4 class="recipe-title">Recipe Name</h4>
-                        <a class="btn btn-recipe" href="/recipe-page">view</a>
-                        
-                    </div>
-                    <div class="recipe-container">
-                        <div class="recipe-image-container">
-    
-                            <img src="../images/background-image-main.jpg" alt="">
-                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
-                        </div>
-                        
-                        <h4 class="recipe-title">Recipe Name</h4>
-                        <a class="btn btn-recipe" href="/recipe-page">view</a>
-                        
-                    </div>
-                    <div class="recipe-container">
-                        <div class="recipe-image-container">
-    
-                            <img src="../images/background-image-main.jpg" alt="">
-                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
-                        </div>
-                        
-                        <h4 class="recipe-title">Recipe Name</h4>
-                        <a class="btn btn-recipe" href="/recipe-page">view</a>
-                        
-                    </div>
-                    <div class="recipe-container">
-                        <div class="recipe-image-container">
-    
-                            <img src="../images/background-image-main.jpg" alt="">
-                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
-                        </div>
-                        
-                        <h4 class="recipe-title">Recipe Name</h4>
-                        <a class="btn btn-recipe" href="/recipe-page">view</a>
-                        
-                    </div>
-                    <div class="recipe-container">
-                        <div class="recipe-image-container">
-    
-                            <img src="../images/background-image-main.jpg" alt="">
-                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
-                        </div>
-                        
-                        <h4 class="recipe-title">Recipe Name</h4>
-                        <a class="btn btn-recipe" href="/recipe-page">view</a>
-                        
-                    </div>
-                    <div class="recipe-container">
-                        <div class="recipe-image-container">
-    
-                            <img src="../images/background-image-main.jpg" alt="">
-                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
-                        </div>
-                        
-                        <h4 class="recipe-title">Recipe Name</h4>
-                        <a class="btn btn-recipe" href="/recipe-page">view</a>
-                        
-                    </div>
-                    <div class="recipe-container">
-                        <div class="recipe-image-container">
-    
-                            <img src="../images/background-image-main.jpg" alt="">
-                            <i class="fa-regular fa-bookmark save-recipe-icon" onclick="saveRecipe(this)"></i>
-                        </div>
-                        
-                        <h4 class="recipe-title">Recipe Name</h4>
-                        <a class="btn btn-recipe" href="/recipe-page">view</a>
-                        
-                    </div>
+                            <% }); %>
+                        <% } %>
+                    
                 </div>
                 <div class="view-more-btn-container">
-                    <button class="btn view-more-btn">View More</button>
+                    <button class="btn view-more-btn" id="viewMoreBtn">View More</button>
                 </div>
             </div>
         </div>
@@ -307,13 +241,14 @@
             </div>
             <div class="footer-other-details">
                 <h3>Contact Us</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta illum cumque aperiam, fugiat molestias incidunt culpa non nemo? Ea, fuga dolore ex nemo neque amet rem omnis in enim perferendis!</p>
+                <p>contact us to  become an integral member of our passionate cooking network,Your participation is not only welcome but essential in building a rich tapestry of shared knowledge and culinary experiences on the internet. email: FlavourFusion401@gmail.com phone:905-123-4567</p>
             </div>
         </div>
         <p>Flavor Fusion , All Rights Reserved</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-wC1QSH7M2N4Etxf3J5Y0MKYRiHegBJHjXlP9/NL9V5z59PaOreY8Jicf1Y8JbX8b" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-LuEZAbn1l2b6lP4j8h07R1UJwG0kMAq3fKc/BF5E4yFkw0ArK3s5pP0Ri/bS0/EP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="../js/recipes.js" defer></script>
+    <script src="../js/getRecipies.js"></script>
     <script src="../js/script.js"></script>
     </body>
 </html>

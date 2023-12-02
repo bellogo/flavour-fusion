@@ -10,7 +10,8 @@
 
 .filter-list-container {
     border: 1px solid rgba(0, 0, 0, .3);
-    width: 24%;
+    width: 28%;
+    margin-right: 1rem;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
     height: max-content;
     padding: 1rem;
@@ -71,7 +72,9 @@
 .dropdown-content input {
     margin-right: 5px;
 }
-
+.recipies-inner-container{
+    width: 80%;
+}
 /* --show the dropdown content when the button is clicked --*/
 .dropdown.active .dropdown-content {
     display: block;
@@ -103,6 +106,7 @@
     width: 80%;
     /* background-color: red; */
     margin-left: auto;
+    text-align: center;
     margin-right: auto;
 }
 #recipeSearchBtn{
@@ -112,11 +116,45 @@
     color: white;
     border: none;
 }
+.lbl{
+    font-weight: bold;
+}
+.cf{
+    padding: 1rem 0rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid: 10px;
+    
+}
 
+.cf li {
+    display: flex;  
+    align-items: center; 
+    justify-content: space-between;
+    width: 100%;
+    /* background-color: red; */
+}
+.itm{
+    font-size: .8rem;
+    margin: .5rem 0rem;
+    
+}
+.itm label {
+    width: 90%;
+}
+.filter-group{
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 10px;
+    padding: 1rem .5rem;
+    margin: .5rem 0rem;
+}
 .total-recipies-container{
     display: grid;
+    /* background-color: red; */
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
+    padding: 20px;
+    width: 100%;
     text-align: center;
 }
 
@@ -126,7 +164,8 @@
     margin-top: 2rem;
 }
 .view-more-btn{
-    display: block;
+    display: none;
+    
     width: max-content;
     margin-left: auto;
     margin-right: auto;
@@ -135,6 +174,11 @@
 .recipe-filter-toogle-container{
     display: none;
 }
+
+/* .empty-recipes{
+    width: 100%;
+    text-align: center;
+} */
 
 @media screen and (max-width: 1000px) {
     .recipies-main-container{
@@ -149,8 +193,8 @@
         position: relative;
     }
     .total-recipies-container{
-        display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
     }
     .recipe-search-container{
         position: absolute;
@@ -161,8 +205,9 @@
     .recipe-filter-toogle-container{
         display: block;
         margin-bottom: 2rem;
-        margin-top: 1.4rem;
+        margin-top: 2rem;
         text-align: center;
+        /* background-color: red; */
     }
     .filter-list-container {
         margin-top: 4rem;
@@ -184,7 +229,16 @@
         left: 15px;
     }
     .total-recipies-container{
-        display: grid;
+        
         grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
+    .recipies-inner-container{
+        width: 100%;
+    }
+    /* .empty-recipies{
+        text-align: center;
+    } */
 }

@@ -130,8 +130,12 @@ module.exports = class AuthController extends MainController {
       } 
 
       req.session.email = user.email;
+
+      // added user id, to send the user id to the recipes page
+      req.session.user = user._id;
+      
       req.session.userLoggedIn = true;
-      res.redirect("recipies");
+      res.redirect("user");
     
     } catch (err) {
       console.log('error', err);
