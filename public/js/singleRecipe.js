@@ -42,19 +42,41 @@ function viewRecipeDetails(edamamApiEndpoint,userId) {
                                 <div class="recipe-icons">
                                     <div class="recipe-details-1">
                                         <div>
-                                            <h4>calories</h4>
+                                            <h4>Calories : </h4>
                                             <p>${recipe.calories.toFixed(0)}</p>
                                         </div>
                                         <div>
-                                            <h4>Cuisine</h4>
+                                            <h4>Cuisine : </h4>
                                             <p>${recipe.cuisineType[0]}</p>
                                         </div>
                                         <div>
-                                            <h4>Meal Type</h4>
+                                            <h4>Meal Type : </h4>
                                             <p>${recipe.mealType[0]}</p>
                                         </div>
+                                        <div>
+                                            <h4>Cook Time : </h4>
+                                            <p>${recipe.totalTime} minutes</p>
+                                        
+                                        </div>
+                                        <div>
+                                            <h4>Servings : </h4>
+                                            <p>${recipe.yield}</p>
+                                        
+                                        </div>
+                                        <div>
+                                            <h4>Source : </h4>
+                                            <p><a href="${recipe.url}" class="recipe-src-name" >${recipe.source}</a></p>
+                                        
+                                        </div>
+                                        
+                                        <div>
+                                            <h4>Cautions : </h4>
+                                            <p>${recipe.cautions[0]}</p>
+                                        
+                                        </div>
                                     </div>
-                                    
+                                    <div class="recipe-icons-cont">
+                                
                                     <div>
                                         <input type="hidden" value="${recipe.uri}" />
                                         
@@ -68,60 +90,58 @@ function viewRecipeDetails(edamamApiEndpoint,userId) {
                                             <i class="fa-solid fa-share-from-square"></i>
                                         </button>
                                         <h5>share</h5>
-                                        <p id="copyStatus"> </p>
+                                        <h5 id="copyStatus"> </h5>
                                     </div>
                             
-                                    <div>
-                                        <i class="far fa-clock"></i>
-                                        <h5>time</h5>
-                                        <p>${recipe.totalTime}</p>
-                                    </div>
                                     
+                                    </div>
                                 </div>
                             
                             </div>
                         </section>
         
                         <section class="recipe-content">
-                            <div class="instructions-container">
-                                <h4>Instructions</h4>           
-                                ${recipe.instructions && recipe.instructions.length > 0 ?
-                                    recipe.instructions.map((instruction, index) => `
-                                        <div class="single-instruction">
-                                            <div class="steps">
-                                                <p>Step ${index + 1}</p>
-                                            </div>
-                                            <p>${instruction}</p>
-                                        </div>
-                                    `).join('') :
-                                    `For Instructions Follow this link <a href="${recipe.url}" target="_blank"><button class="btn instruction-btn">Get Instructions</button></>`
-                                }
-                            </div>
-                            <div class="ingredients-container">
-                                <div>
-                                    <h4>Ingredients</h4>
-                                    ${recipe.ingredientLines.map(ingredient => `<p class="single-ingredient">${ingredient}</p>`).join('')}
-                                </div>
+                            <div>
+                                <div class="ingredients-container">
+                                    <div>
+                                        <h4>Ingredients</h4>
+                                        ${recipe.ingredientLines.map(ingredient => `<p class="single-ingredient">${ingredient}</p>`).join('')}
+                                    </div>
         
-                            </div>
-                        </section>
-                        <section class="recipe-details-2">
-                            <h4>Total Nutrients</h4>
-                            <div class="recipe-details-2-content">
-                            ${Object.keys(recipe.totalNutrients).map(nutrientKey => `
-                                <div>
-                                    <h5>${recipe.totalNutrients[nutrientKey].label}: </h5>
-                                    <span>${recipe.totalNutrients[nutrientKey].quantity.toFixed(0)}</span> 
-                                    <span>${recipe.totalNutrients[nutrientKey].unit}</span>
                                 </div>
-                            `).join('')}
-
+                                <div class="instructions-container">
+                                    <h4>Instructions</h4>           
+                                    ${recipe.instructions && recipe.instructions.length > 0 ?
+                                        recipe.instructions.map((instruction, index) => `
+                                            <div class="single-instruction">
+                                                <div class="steps">
+                                                    <p>Step ${index + 1}</p>
+                                                </div>
+                                                <p>${instruction}</p>
+                                            </div>
+                                        `).join('') :
+                                        `<a href="${recipe.url}" target="_blank"><button class="btn instruction-btn">Get Instructions</button></>`
+                                    }
+                                </div>
                             
-                                    
-                                
                                 
                             </div>
+                                
+
+                                <div class="recipe-details-2">
+                                    <h4>Total Nutrients</h4>
+                                    <div class="recipe-details-2-content">
+                                    ${Object.keys(recipe.totalNutrients).map(nutrientKey => `
+                                        <div>
+                                            <h5>${recipe.totalNutrients[nutrientKey].label}: </h5>
+                                            <span>${recipe.totalNutrients[nutrientKey].quantity.toFixed(0)} ${recipe.totalNutrients[nutrientKey].unit}</span> 
+                                            
+                                        </div>
+                                    `).join('')}
+                                    </div>
+                                </div>
                         </section>
+                        
                     </div>`
                     
                         ContainerElement.innerHTML = createRecipe;

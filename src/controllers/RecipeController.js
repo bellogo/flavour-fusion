@@ -64,13 +64,8 @@ module.exports = class RecipeController extends MainController {
       const recipe = await this.mainRepo.create({...req.body, image: pageImage});
 
       const allRecipes = await this.mainRepo.getCollection();
-      // console.log(allRecipes);
-      console.log('gfsd', req.session);
-      // return res.render("recipies", {errors: null, message: "Recipe added successful"})
-      return res.render("user", {
-        errors: null,
-        message: "Recipe added successful"
-      });
+        console.log(allRecipes);
+        res.render("user", {errors: null, message: null, recipes: allRecipes.records})
     
     } catch (err) {
       console.log('error', err);
@@ -163,6 +158,35 @@ module.exports = class RecipeController extends MainController {
     }
   };
 
+  renderUserPage = async (req, res) => {
+    try {
+
+     
+       
+      if (req.session.userLoggedIn) {
+        const allRecipes = await this.mainRepo.getCollection();
+        console.log(allRecipes);
+        res.render("user", {errors: null, message: null, recipes: allRecipes.records})
+
+    
+      }else {
+        res.render("login", {errors: ['Please login to continue'], message: null})
+      }
+    } catch (err) {
+      console.log('error', err);
+
+      if(err.code === 11000) {
+       return res.render("register", {
+          errors: [`${Object.keys(err.keyValue)[0]} already exists`],
+          message: null
+        });
+      }
+      return res.status(500).json({
+        status: 'error',
+        message: 'an error occured',
+      });
+    }
+  };
    /**
    *
    * fetch recipes
@@ -217,5 +241,7 @@ module.exports = class RecipeController extends MainController {
       });
     }
   };
+
+
 
 };

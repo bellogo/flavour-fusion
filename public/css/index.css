@@ -280,7 +280,7 @@ input,textarea{
 }
 .recipe-container{
     height: 22rem;
-    width: 16rem;
+    width: 15rem;
     border-radius: 16px;
     display: flex;
     background-color: #eff1f3;
@@ -291,11 +291,30 @@ input,textarea{
     padding-bottom: 1rem;
 }
 .recipe-container .recipe-title{
-    font-size: .9rem;
+    font-size: 1rem;
     margin-top: 1rem;
+    max-width: 96%;
+    text-align: center;
     /* background-color: red; */
 }
 
+.search-recipe-title{
+    /* text-decoration: underline; */
+    color: #458cde;
+}
+.recipe-small span{
+    margin-left: .5rem;
+}
+.recipe-mini-cont{
+    width: 70%;
+    /* background-color: red; */
+    margin-left: auto;
+    margin-right: auto;
+}
+.recipe-small{
+    display: inline;
+    font-size: .9rem;
+}
 .recipe-image-container {
     position: relative;
     height: 100%;
@@ -306,15 +325,15 @@ input,textarea{
 }
 
 .save-recipe-icon.saved {
-    color: #00ff00; /* Color when saved */
-    transform: scale(1.2); /* Scale when saved */
+    color: #559455; 
+    transform: scale(1.2); 
 }
 
 
 
 .recipe-page-save.saved{
     /* background-color: #00ff00; */
-    color: #00ff00;
+    color: #559455;
     transform: scale(1.2);
 }
 
@@ -434,6 +453,15 @@ input,textarea{
     cursor: pointer;
     font-size: 40px;
     color: #000;
+}
+@media screen and (max-width: 1300px) {
+    .top-recipies-inner-container{
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+
+    }
 }
 @media screen and (max-width: 1200px) {
     .burger-menu {

@@ -125,5 +125,5 @@ function displayUserResults(favoritesRecipesContainer,recipe,userId) {
     // });
     
 }
+
 getUserFavorites()
-// 

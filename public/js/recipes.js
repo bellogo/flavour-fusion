@@ -114,9 +114,14 @@ function displayResults(recipes,userId) {
                                 <input type="hidden" value="${recipe.recipe.uri}" />
                                 <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
                                 
+                                <a class="search-recipe-title" href="/view-recipe/recipe?uri=${encodedUri}" target="_blank"><h4 class="recipe-title">${recipe.recipe.label}</h4></a>
+                                <div class='recipe-mini-cont'>
                                 
-                                <h4 class="recipe-title">${recipe.recipe.label}</h4>
-                                <a class="btn btn-recipe" href="/view-recipe/recipe?uri=${encodedUri}" target="_blank">View</a>`;
+                                <p class='recipe-small calorie-lable'>Calories: <span> ${recipe.recipe.calories.toFixed(2)}</p>
+                                <p class='recipe-small ingredient-label'> Ingredients: <span> ${recipe.recipe.ingredients.length}  </p>
+                                </div>
+
+                                `;
 
         recipeContainer.appendChild(recipeDiv);
 
