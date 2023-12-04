@@ -11,13 +11,9 @@ const favoriteController = new FavoriteController();
 
 router.get('/signup', authController.renserSignUp);
 
-router.get('/', (req, res) => {
-  res.render("index", {errors: null, message: null})
-});
+router.get('/', recipeController.renderIndexPage);
 
-router.get('/index', (req, res) => {
-  res.render("index", {errors: null, message: null})
-});
+router.get('/index', recipeController.renderIndexPage);
 
 router.get('/contact', (req, res) => {
   res.render("contact", {errors: null, message: null})
@@ -27,9 +23,7 @@ router.get('/recipe-page', (req, res) => {
   res.render("recipe-page", {errors: null, message: null})
 });
 
-router.get('/our-recipe-page', (req, res) => {
-  res.render("our-recipe-page", {errors: null, message: null})
-});
+router.get('/our-recipe-page/:id', recipeController.renderOurRecipePage );
 
 router.get('/user', recipeController.renderUserPage);
 

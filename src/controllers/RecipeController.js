@@ -165,7 +165,7 @@ module.exports = class RecipeController extends MainController {
        
       if (req.session.userLoggedIn) {
         const allRecipes = await this.mainRepo.getCollection();
-        console.log(allRecipes);
+        console.log('allRecipes', allRecipes);
         res.render("user", {errors: null, message: null, recipes: allRecipes.records})
 
     
@@ -181,6 +181,55 @@ module.exports = class RecipeController extends MainController {
           message: null
         });
       }
+      return res.status(500).json({
+        status: 'error',
+        message: 'an error occured',
+      });
+    }
+  };
+
+  renderIndexPage = async (req, res) => {
+    try {
+
+     
+       
+     
+        const allRecipes = await this.mainRepo.getCollection();
+        console.log('allRecipes', allRecipes);
+        res.render("index", {errors: null, message: null, recipes: allRecipes.records})
+
+    
+    
+    } catch (err) {
+      console.log('error', err);
+
+  
+      return res.status(500).json({
+        status: 'error',
+        message: 'an error occured',
+      });
+    }
+  };
+
+  
+  renderOurRecipePage = async (req, res) => {
+    try {
+
+     const id = req.params.id
+       const recipe = await this.mainRepo.getModelById(id)
+      if (req.session.userLoggedIn) {
+        const allRecipes = await this.mainRepo.getCollection();
+        // console.log(allRecipes);
+        // var fullUrl = req.protocol + '://' + req.get('host');
+        // console.log('eioqhuigyuhjbknlm;WQEKLJKBHJADNKMLF,;LGM;KNLJBKD,S.FGWRH', fullUrl);
+        res.render("our-recipe-page", { errors: null, message: null, recipe: recipe })
+      }else {
+        res.render("login", {errors: ['Please login to continue'], message: null})
+      }
+    } catch (err) {
+      console.log('error', err);
+
+      
       return res.status(500).json({
         status: 'error',
         message: 'an error occured',
